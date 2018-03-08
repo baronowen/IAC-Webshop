@@ -1,14 +1,14 @@
 package Webservices;
 
-import Model.Address;
-import Model.Customer;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
 import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,7 +20,7 @@ public class Resource {
     private static final Reflections reflections = new Reflections("Model", new SubTypesScanner(false));
     private static final Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
 
-    //TODO Add ArrayList compatibility
+    // Supports attributes: String, double, int, boolean, List
     public static JsonObjectBuilder objectToJsonObjectBuilder(Object o) {
 
         //Convert the Object to a Class object
@@ -50,22 +50,31 @@ public class Resource {
                 if (allClasses.contains(field.getType())) {
 
                     // if true add the Object attribute to the Object
-                    job.add(field.getType().getSimpleName(),objectToJsonObjectBuilder(f.get(o)));
+                    job.add(field.getName(), objectToJsonObjectBuilder(f.get(o)));
 
                 } else {
 
                     //TODO make this more dynamic
                     // Cast attribute to specific type
-                    if (field.getType().equals(String.class)) {
-                        job.add(field.getName(), (String) f.get(o));
-                    } else if ((field.getType().equals(Integer.class) || field.getType().equals(int.class))) {
-                        job.add(field.getName(), (int) f.get(o));
-                    } else if ((field.getType().equals(double.class))) {
-                        job.add(field.getName(), (double) f.get(o));
-                    } else if ((field.getType().equals(boolean.class))) {
-                        job.add(field.getName(), (boolean) f.get(o));
-                    } else {
-                        System.out.println("ERROR: ATTRIBUTE TYPE: " + field.getType() + " NOT DEFINED!");
+
+                    try {
+
+                        if (field.getType().equals(String.class)) {
+                            job.add(field.getName(), (String) f.get(o));
+                        } else if ((field.getType().equals(Integer.class) || field.getType().equals(int.class))) {
+                            job.add(field.getName(), (int) f.get(o));
+                        } else if ((field.getType().equals(double.class))) {
+                            job.add(field.getName(), (double) f.get(o));
+                        } else if ((field.getType().equals(boolean.class))) {
+                            job.add(field.getName(), (boolean) f.get(o));
+                        } else if ((field.getType().equals(List.class))) {
+                            job.add(field.getName(), objectsToJsonArrayBuilder( (List<?>) f.get(o)));
+                        } else {
+                            System.out.println("ATTRIBUTE TYPE: " + field.getType() + " NOT DEFINED!");
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("ATTRIBUTE TYPE: " + field.getType() + " CAUSED AN ERROR!");
                     }
 
                     //DEBUG
@@ -78,8 +87,17 @@ public class Resource {
 
         }
 
-        // Return object as a job
         return job;
+
+    }
+
+    public static JsonArrayBuilder objectsToJsonArrayBuilder(List<?> objectList){
+
+        JsonArrayBuilder jab = Json.createArrayBuilder();
+        for (Object object : objectList) {
+            jab.add(objectToJsonObjectBuilder(object));
+        }
+        return jab;
 
     }
 
