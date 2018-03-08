@@ -25,7 +25,7 @@ public class AuthenticationResource {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public Response authenticateUser(	@FormParam("username") String username,
-                                         @FormParam("password") String wachtwoord) {
+                                         @FormParam("password") String password) {
         System.out.println("Starting authentication...");
         try {
             String role = "user";
