@@ -43,7 +43,7 @@ public class Category {
 
 
     //endregion
-    
+
     @Override
     public String toString() {
         return "Category{" +

@@ -19,18 +19,16 @@
     <property name='show_sql'>true</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.hbm2ddl.auto">create</property>
 
     <property name="hibernate.hql.bulk_id_strategy">org.hibernate.hql.spi.id.inline.InlineIdsInClauseBulkIdStrategy</property>
 
     <!-- Mapping files -->
     <mapping class='Model.Account'/>
     <mapping class='Model.Address'/>
-    <mapping class='Model.Category'/>
     <mapping class='Model.Customer'/>
     <mapping class='Model.Order'/>
     <mapping class='Model.OrderLine'/>
     <mapping class='Model.Product'/>
-    <mapping class='Model.Sale'/>
 </session-factory>
 </hibernate-configuration>
