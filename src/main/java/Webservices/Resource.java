@@ -25,10 +25,12 @@ public class Resource {
 
     public static final AccountController accountController = new AccountController();
     public static final AddressController addressController = new AddressController();
+    public static final CategoryController categoryController = new CategoryController();
     public static final CustomerController customerController = new CustomerController();
     public static final OrderController orderController = new OrderController();
     public static final OrderLineController orderLineController = new OrderLineController();
     public static final ProductController productController = new ProductController();
+    public static final SaleController saleController = new SaleController();
 
     // Supports attributes: String, double, int, boolean, List, Date
     public static JsonObjectBuilder objectToJsonObjectBuilder(Object o) {

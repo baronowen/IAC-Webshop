@@ -1,6 +1,6 @@
 package Webservices;
 
-import Model.Account;
+import Model.Category;
 
 import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
@@ -17,18 +17,18 @@ import java.util.List;
  */
 
 
-@Path("/account")
-public class AccountResource {
+@Path("/category")
+public class CategoryResource {
 
 
     @GET
 //    @RolesAllowed({"user"})
     @Produces("application/json")
-    public Response getAllAccounts() {
+    public Response getAllCategories() {
         try {
 
-            List<Account> accountList = Resource.accountController.findAll();
-            JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(accountList).build();
+            List<Category> categoryList = Resource.categoryController.findAll();
+            JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(categoryList).build();
             return Response.ok(jsonArray.toString()).build();
 
         } catch (IllegalArgumentException e) {
@@ -45,8 +45,8 @@ public class AccountResource {
     public Response getAccountById(@PathParam("id") int id) {
         try {
 
-            Account account = Resource.accountController.findById(id);
-            JsonObject jsonObject = Resource.objectToJsonObjectBuilder(account).build();
+            Category category = Resource.categoryController.findById(id);
+            JsonObject jsonObject = Resource.objectToJsonObjectBuilder(category).build();
             return Response.ok(jsonObject.toString()).build();
 
         } catch (IllegalArgumentException e) {

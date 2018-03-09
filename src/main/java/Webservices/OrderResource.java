@@ -1,6 +1,6 @@
 package Webservices;
 
-import Model.Account;
+import Model.Order;
 
 import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
@@ -17,18 +17,18 @@ import java.util.List;
  */
 
 
-@Path("/account")
-public class AccountResource {
+@Path("/order")
+public class OrderResource {
 
 
     @GET
 //    @RolesAllowed({"user"})
     @Produces("application/json")
-    public Response getAllAccounts() {
+    public Response getAllOrders() {
         try {
 
-            List<Account> accountList = Resource.accountController.findAll();
-            JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(accountList).build();
+            List<Order> orderList = Resource.orderController.findAll();
+            JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(orderList).build();
             return Response.ok(jsonArray.toString()).build();
 
         } catch (IllegalArgumentException e) {
@@ -42,11 +42,11 @@ public class AccountResource {
     @Path("{id}")
 //    @RolesAllowed({"user"})
     @Produces("application/json")
-    public Response getAccountById(@PathParam("id") int id) {
+    public Response getOrderById(@PathParam("id") int id) {
         try {
 
-            Account account = Resource.accountController.findById(id);
-            JsonObject jsonObject = Resource.objectToJsonObjectBuilder(account).build();
+            Order order = Resource.orderController.findById(id);
+            JsonObject jsonObject = Resource.objectToJsonObjectBuilder(order).build();
             return Response.ok(jsonObject.toString()).build();
 
         } catch (IllegalArgumentException e) {

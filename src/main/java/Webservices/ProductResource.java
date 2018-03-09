@@ -8,6 +8,7 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -23,13 +24,10 @@ public class ProductResource {
 
 
     @GET
-    //@RolesAllowed({"user"})
-    @PermitAll
+//    @RolesAllowed({"user"})
     @Produces("application/json")
     public Response getAllProducts() {
         try {
-
-            System.out.println("Getting all products....");
 
             List<Product> productList = Resource.productController.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(productList).build();
@@ -44,12 +42,12 @@ public class ProductResource {
 
     @GET
     @Path("{id}")
-    @RolesAllowed({"user"})
+//    @RolesAllowed({"user"})
     @Produces("application/json")
-    public Response getAllProductById() {
+    public Response getProductById(@PathParam("id") int id) {
         try {
 
-            Product product = Resource.productController.findById(1);
+            Product product = Resource.productController.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(product).build();
             return Response.ok(jsonObject.toString()).build();
 
