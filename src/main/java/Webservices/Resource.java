@@ -7,6 +7,9 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -19,7 +22,7 @@ public class Resource {
     private static final Reflections reflections = new Reflections("Model", new SubTypesScanner(false));
     private static final Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
 
-    // Supports attributes: String, double, int, boolean, List
+    // Supports attributes: String, double, int, boolean, List, Date
     public static JsonObjectBuilder objectToJsonObjectBuilder(Object o) {
 
         //Convert the Object to a Class object
@@ -68,7 +71,12 @@ public class Resource {
                             job.add(field.getName(), (boolean) f.get(o));
                         } else if ((field.getType().equals(List.class))) {
                             job.add(field.getName(), objectsToJsonArrayBuilder( (List<?>) f.get(o)));
-                        } else {
+                        } else if ((field.getType().equals(Date.class))) {
+                            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                            job.add(field.getName(), df.format((Date) f.get(o)));
+                        }
+
+                        else {
                             System.out.println("ATTRIBUTE TYPE: " + field.getType() + " NOT DEFINED!");
                         }
 
