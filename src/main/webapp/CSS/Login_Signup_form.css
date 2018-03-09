@@ -1,10 +1,17 @@
+/*Login.html and Signup.html*/
 .form-control {
     width: 400px;
 }
+
+.btn {
+    width: 150px;
+}
+
 /*Login.html*/
 .login-form {
     text-align: center;
 }
+
 /*Signup.html*/
 .signup-form {
     text-align: center;
