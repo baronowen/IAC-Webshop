@@ -3,29 +3,21 @@ package Model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Product")
-public class Product {
+@Table(name = "Category")
+public class Category {
     @Id
     @GeneratedValue
-    @Column(unique = true, nullable = false)
     private int id;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private double price;
-
-    @Column
     private String description;
 
-    private Product(){}
+//    private image
 
-    public Product(String name, double price, String description) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-    }
+    private Category(){}
 
     //region getters/setters
 
@@ -41,14 +33,6 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -57,15 +41,14 @@ public class Product {
         this.description = description;
     }
 
+
     //endregion
-
-
+    
     @Override
     public String toString() {
-        return "Product{" +
+        return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
                 ", description='" + description + '\'' +
                 '}';
     }

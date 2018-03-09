@@ -7,27 +7,53 @@ import javax.persistence.*;
 public class OrderLine {
     @Id
     @GeneratedValue
-    @Column
+    @Column(nullable = false)
     private int id;
 
-//    @ManyToOne
-//    @JoinColumn(name="order_id", nullable=false)
-//    private Order order;
-
-    @Column()
+    @Column(nullable = false)
     private int amount;
 
-    @Column()
-    private double price;
-
+    @JoinColumn(nullable = false)
     @OneToOne(cascade = CascadeType.ALL)
     private Product product;
 
     private OrderLine(){}
 
-    public OrderLine(int amount, double price, Product product) {
+    public OrderLine(int amount, Product product) {
         this.amount = amount;
-        this.price = price;
         this.product = product;
+    }
+
+    //region getters/setters
+
+    public int getId() {
+        return id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    //endregion
+
+    @Override
+    public String toString() {
+        return "OrderLine{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", product=" + product +
+                '}';
     }
 }
