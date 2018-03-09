@@ -10,6 +10,7 @@ import javax.json.JsonObjectBuilder;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class Resource {
     public static final ProductController productController = new ProductController();
     public static final SaleController saleController = new SaleController();
 
-    // Supports attributes: String, double, int, boolean, List, Date
+    // Supports attributes: String, double, int, boolean, Collection, Date
     public static JsonObjectBuilder objectToJsonObjectBuilder(Object o) {
 
         // Load all fields in the class (private included)
@@ -73,8 +74,8 @@ public class Resource {
                             job.add(field.getName(), (double) field.get(o));
                         } else if ((field.getType().equals(boolean.class))) {
                             job.add(field.getName(), (boolean) field.get(o));
-                        } else if ((field.getType().equals(List.class))) {
-                            job.add(field.getName(), objectsToJsonArrayBuilder( (List<?>) field.get(o)));
+                        } else if ((field.get(o) instanceof Collection)) {
+                            job.add(field.getName(), objectsToJsonArrayBuilder( (Collection<?>) field.get(o)));
                         } else if ((field.getType().equals(Date.class))) {
                             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
                             job.add(field.getName(), df.format((Date) field.get(o)));
@@ -102,7 +103,7 @@ public class Resource {
 
     }
 
-    public static JsonArrayBuilder objectsToJsonArrayBuilder(List<?> objectList){
+    public static JsonArrayBuilder objectsToJsonArrayBuilder(Collection<?> objectList){
 
         JsonArrayBuilder jab = Json.createArrayBuilder();
         for (Object object : objectList) {
