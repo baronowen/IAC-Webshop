@@ -1,6 +1,9 @@
 package Model;
 
 import javax.persistence.*;
+
+@Entity
+@Table(name = "Customer")
 public class Customer {
     @Id
     @GeneratedValue
@@ -19,6 +22,8 @@ public class Customer {
     @Column(nullable = false)
     private String birthDate;
 
-    @Column(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
+
+    private Customer(){}
 }

@@ -5,25 +5,29 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.sql.Date;
 
+@Entity
+@Table(name = "Account")
 public class Account {
     @Id
     @GeneratedValue
-    @Column(name = "id", unique = true, nullable = false)
+    @Column
     private int id;
 
-    @Column()
+    @Column
     @Type(type="date")
     private Date openDate;
 
-    @Column()
+    @OneToOne(cascade = CascadeType.ALL)
     private Address invoiceAddress;
 
-    @Column()
+    @OneToOne
     private Customer customer;
 
-    @Column()
+    @Column
     private boolean isActive;
 
-    @Column()
+    @Column
     private String password;
+
+    private Account(){}
 }
