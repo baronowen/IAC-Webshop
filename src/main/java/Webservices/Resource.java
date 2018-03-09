@@ -1,5 +1,6 @@
 package Webservices;
 
+import Persistance.*;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 
@@ -21,6 +22,13 @@ public class Resource {
     // Create a set of all Classes from package: "Model"
     private static final Reflections reflections = new Reflections("Model", new SubTypesScanner(false));
     private static final Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
+
+    public static final AccountController accountController = new AccountController();
+    public static final AddressController addressController = new AddressController();
+    public static final CustomerController customerController = new CustomerController();
+    public static final OrderController orderController = new OrderController();
+    public static final OrderLineController orderLineController = new OrderLineController();
+    public static final ProductController productController = new ProductController();
 
     // Supports attributes: String, double, int, boolean, List, Date
     public static JsonObjectBuilder objectToJsonObjectBuilder(Object o) {
