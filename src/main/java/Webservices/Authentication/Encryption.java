@@ -35,7 +35,6 @@ public class Encryption {
 
         // encrypt a total of 1000x with 3 different salts
         for (int i=0; i < 10; i++) {
-            System.out.println(i);
             encrypted = getSHA512SecurePassword(encrypted, salt_key1);
             for (int ii = 0; ii < 10; ii++) {
                 encrypted = getSHA512SecurePassword(encrypted, salt_key2);
