@@ -12,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import Webservices.Resource;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -19,8 +20,7 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 
 @Path("/authentication")
 public class AuthenticationResource {
-    final static public Key key = MacProvider.generateKey(); //Generate a random secret key
-
+    final static public Key key = MacProvider.generateKey(); //Generate a random secret key for tokens
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -28,17 +28,15 @@ public class AuthenticationResource {
                                          @FormParam("password") String password) {
         System.out.println("Starting authentication...");
         try {
-            String role = "user";
-            //TODO Authenticate the user against the database
-
-            if (role == null) { throw new IllegalArgumentException("No user found!"); }
+            boolean role = Resource.accountController.isLoginCorrect(username, Encryption.encrypt(password));
+            if (role == false) { throw new IllegalArgumentException("No user found!"); }
             JsonObjectBuilder job = Json.createObjectBuilder();
             // Issue a token for the user
             Calendar expiration = Calendar.getInstance();
             expiration.add(Calendar.MINUTE, 30);
             String token = Jwts.builder()
                     .setSubject(username)
-                    .claim("role", role)
+                    .claim("role", "user")
                     .setExpiration(expiration.getTime())
                     .signWith(SignatureAlgorithm.HS512, key)
                     .compact();

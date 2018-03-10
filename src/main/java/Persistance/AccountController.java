@@ -10,4 +10,11 @@ public class AccountController extends GenericDao<Account> implements GenericCon
         super();
     }
 
+    //TODO Add functionality
+    public boolean isLoginCorrect(String username, String password){
+
+        return true;
+
+    }
+
 }
