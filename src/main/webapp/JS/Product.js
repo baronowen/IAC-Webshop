@@ -15,9 +15,9 @@ function loadProduct() {
             $("#name").html(data.name);
             $("#price").html("€ " + data.price);
             $("#descr").html(data.description);
-            console.log(data.name);
-            console.log(data.price);
-            console.log(data.description);
+            // console.log(data.name);
+            // console.log(data.price);
+            // console.log(data.description);
         }]
     });
     console.log('einde');
