@@ -19,6 +19,11 @@ public class Category {
 
     private Category(){}
 
+    public Category(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     //region getters/setters
 
     public int getId() {
@@ -40,7 +45,6 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     //endregion
 

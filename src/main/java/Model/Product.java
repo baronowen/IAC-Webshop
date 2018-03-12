@@ -59,7 +59,6 @@ public class Product {
 
     //endregion
 
-
     @Override
     public String toString() {
         return "Product{" +

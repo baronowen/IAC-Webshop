@@ -4,9 +4,9 @@ import Model.Account;
 import Persistance.Generic.GenericController;
 import Persistance.Generic.GenericDao;
 
-public class AccountController extends GenericDao<Account> implements GenericController<Account> {
+public class AccountDao extends GenericDao<Account> implements GenericController<Account> {
 
-    public AccountController(){
+    public AccountDao(){
         super();
     }
 

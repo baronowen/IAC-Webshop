@@ -4,9 +4,9 @@ import Model.Customer;
 import Persistance.Generic.GenericController;
 import Persistance.Generic.GenericDao;
 
-public class CustomerController extends GenericDao<Customer> implements GenericController<Customer> {
+public class CustomerDao extends GenericDao<Customer> implements GenericController<Customer> {
 
-    public CustomerController(){
+    public CustomerDao(){
         super();
     }
 

@@ -28,9 +28,21 @@ public class Account {
     private boolean isActive;
 
     @Column
+    private String email;
+
+    @Column
     private String password;
 
     private Account(){}
+
+    public Account(Date openDate, Address invoiceAddress, Customer customer, boolean isActive, String email, String password) {
+        this.openDate = openDate;
+        this.invoiceAddress = invoiceAddress;
+        this.customer = customer;
+        this.isActive = isActive;
+        this.email = email;
+        this.password = password;
+    }
 
     //region getters/setters
 
@@ -78,9 +90,7 @@ public class Account {
         this.password = password;
     }
 
-
     //endregion
-
 
     @Override
     public String toString() {
@@ -91,6 +101,7 @@ public class Account {
                 ", customer=" + customer +
                 ", isActive=" + isActive +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

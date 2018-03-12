@@ -5,7 +5,6 @@ package Webservices;
  */
 import Model.Address;
 
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -30,7 +29,7 @@ public class AddressResource {
     public Response getAllAddresses() {
         try {
 
-            List<Address> addressList = Resource.addressController.findAll();
+            List<Address> addressList = Resource.ADDRESS_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(addressList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -48,7 +47,7 @@ public class AddressResource {
     public Response getAccountById(@PathParam("id") int id) {
         try {
 
-            Address address = Resource.addressController.findById(id);
+            Address address = Resource.ADDRESS_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(address).build();
             return Response.ok(jsonObject.toString()).build();
 

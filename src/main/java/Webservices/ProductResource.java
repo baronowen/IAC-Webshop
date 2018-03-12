@@ -2,8 +2,6 @@ package Webservices;
 
 import Model.Product;
 
-import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -29,7 +27,7 @@ public class ProductResource {
     public Response getAllProducts() {
         try {
 
-            List<Product> productList = Resource.productController.findAll();
+            List<Product> productList = Resource.PRODUCT_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(productList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -47,7 +45,7 @@ public class ProductResource {
     public Response getProductById(@PathParam("id") int id) {
         try {
 
-            Product product = Resource.productController.findById(id);
+            Product product = Resource.PRODUCT_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(product).build();
             return Response.ok(jsonObject.toString()).build();
 

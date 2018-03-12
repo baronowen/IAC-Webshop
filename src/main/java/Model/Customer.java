@@ -28,6 +28,14 @@ public class Customer {
 
     private Customer(){}
 
+    public Customer(String name, String surName, int telephoneNumber, String birthDate, Address address) {
+        this.name = name;
+        this.surName = surName;
+        this.telephoneNumber = telephoneNumber;
+        this.birthDate = birthDate;
+        this.address = address;
+    }
+
     //region getters/setters
 
     public int getId() {
@@ -76,7 +84,6 @@ public class Customer {
 
 
     //endregion
-
 
     @Override
     public String toString() {

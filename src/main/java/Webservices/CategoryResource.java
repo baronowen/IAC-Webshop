@@ -2,7 +2,6 @@ package Webservices;
 
 import Model.Category;
 
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -27,7 +26,7 @@ public class CategoryResource {
     public Response getAllCategories() {
         try {
 
-            List<Category> categoryList = Resource.categoryController.findAll();
+            List<Category> categoryList = Resource.CATEGORY_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(categoryList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -45,7 +44,7 @@ public class CategoryResource {
     public Response getAccountById(@PathParam("id") int id) {
         try {
 
-            Category category = Resource.categoryController.findById(id);
+            Category category = Resource.CATEGORY_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(category).build();
             return Response.ok(jsonObject.toString()).build();
 

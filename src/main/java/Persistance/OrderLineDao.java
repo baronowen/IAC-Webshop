@@ -4,9 +4,9 @@ import Model.OrderLine;
 import Persistance.Generic.GenericController;
 import Persistance.Generic.GenericDao;
 
-public class OrderLineController extends GenericDao<OrderLine> implements GenericController<OrderLine> {
+public class OrderLineDao extends GenericDao<OrderLine> implements GenericController<OrderLine> {
 
-    public OrderLineController(){
+    public OrderLineDao(){
         super();
     }
 

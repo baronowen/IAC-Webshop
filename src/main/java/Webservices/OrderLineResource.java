@@ -2,7 +2,6 @@ package Webservices;
 
 import Model.OrderLine;
 
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -27,7 +26,7 @@ public class OrderLineResource {
     public Response getAllOrderLines() {
         try {
 
-            List<OrderLine> orderLineList = Resource.orderLineController.findAll();
+            List<OrderLine> orderLineList = Resource.ORDER_LINE_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(orderLineList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -45,7 +44,7 @@ public class OrderLineResource {
     public Response getOrderLineById(@PathParam("id") int id) {
         try {
 
-            OrderLine orderLine = Resource.orderLineController.findById(id);
+            OrderLine orderLine = Resource.ORDER_LINE_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(orderLine).build();
             return Response.ok(jsonObject.toString()).build();
 

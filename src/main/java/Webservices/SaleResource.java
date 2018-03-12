@@ -2,7 +2,6 @@ package Webservices;
 
 import Model.Sale;
 
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -27,7 +26,7 @@ public class SaleResource {
     public Response getAllSales() {
         try {
 
-            List<Sale> saleList = Resource.saleController.findAll();
+            List<Sale> saleList = Resource.SALE_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(saleList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -45,7 +44,7 @@ public class SaleResource {
     public Response getSaleById(@PathParam("id") int id) {
         try {
 
-            Sale sale = Resource.saleController.findById(id);
+            Sale sale = Resource.SALE_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(sale).build();
             return Response.ok(jsonObject.toString()).build();
 

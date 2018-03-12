@@ -12,7 +12,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,14 +23,14 @@ public class Resource {
     private static final Reflections reflections = new Reflections("Model", new SubTypesScanner(false));
     private static final Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
 
-    public static final AccountController accountController = new AccountController();
-    public static final AddressController addressController = new AddressController();
-    public static final CategoryController categoryController = new CategoryController();
-    public static final CustomerController customerController = new CustomerController();
-    public static final OrderController orderController = new OrderController();
-    public static final OrderLineController orderLineController = new OrderLineController();
-    public static final ProductController productController = new ProductController();
-    public static final SaleController saleController = new SaleController();
+    public static final AccountDao ACCOUNT_DAO = new AccountDao();
+    public static final AddressDao ADDRESS_DAO = new AddressDao();
+    public static final CategoryDao CATEGORY_DAO = new CategoryDao();
+    public static final CustomerDao CUSTOMER_DAO = new CustomerDao();
+    public static final OrderDao ORDER_DAO = new OrderDao();
+    public static final OrderLineDao ORDER_LINE_DAO = new OrderLineDao();
+    public static final ProductDao PRODUCT_DAO = new ProductDao();
+    public static final SaleDao SALE_DAO = new SaleDao();
 
     // Supports attributes: String, double, int, boolean, Collection, Date
     public static JsonObjectBuilder objectToJsonObjectBuilder(Object o) {

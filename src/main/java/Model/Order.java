@@ -33,7 +33,6 @@ public class Order {
         return id;
     }
 
-
     public Address getDeliveryAddress() {
         return deliveryAddress;
     }
@@ -51,7 +50,6 @@ public class Order {
     }
 
     //endregion
-
 
     @Override
     public String toString() {

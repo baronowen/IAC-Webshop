@@ -2,7 +2,6 @@ package Webservices;
 
 import Model.Customer;
 
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -27,7 +26,7 @@ public class CustomerResource {
     public Response getAllCustomers() {
         try {
 
-            List<Customer> customerList = Resource.customerController.findAll();
+            List<Customer> customerList = Resource.CUSTOMER_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(customerList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -45,7 +44,7 @@ public class CustomerResource {
     public Response getCustomerById(@PathParam("id") int id) {
         try {
 
-            Customer customer = Resource.customerController.findById(id);
+            Customer customer = Resource.CUSTOMER_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(customer).build();
             return Response.ok(jsonObject.toString()).build();
 

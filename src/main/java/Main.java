@@ -2,16 +2,16 @@ import Model.Address;
 import Model.Order;
 import Model.OrderLine;
 import Model.Product;
-import Persistance.AddressController;
-import Persistance.OrderController;
+import Persistance.AddressDao;
+import Persistance.OrderDao;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        OrderController oc = new OrderController();
-        AddressController ac = new AddressController();
+        OrderDao oc = new OrderDao();
+        AddressDao ac = new AddressDao();
         Address address = new Address("straat", 25, "stad", "potcode");
 
         Product apple = new Product( "appel", 12.50, "omschrijving");

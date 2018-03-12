@@ -2,7 +2,6 @@ package Webservices;
 
 import Model.Order;
 
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -27,7 +26,7 @@ public class OrderResource {
     public Response getAllOrders() {
         try {
 
-            List<Order> orderList = Resource.orderController.findAll();
+            List<Order> orderList = Resource.ORDER_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(orderList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -45,7 +44,7 @@ public class OrderResource {
     public Response getOrderById(@PathParam("id") int id) {
         try {
 
-            Order order = Resource.orderController.findById(id);
+            Order order = Resource.ORDER_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(order).build();
             return Response.ok(jsonObject.toString()).build();
 

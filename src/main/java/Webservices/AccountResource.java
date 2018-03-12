@@ -2,7 +2,6 @@ package Webservices;
 
 import Model.Account;
 
-import javax.annotation.security.RolesAllowed;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.ws.rs.GET;
@@ -27,7 +26,7 @@ public class AccountResource {
     public Response getAllAccounts() {
         try {
 
-            List<Account> accountList = Resource.accountController.findAll();
+            List<Account> accountList = Resource.ACCOUNT_DAO.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(accountList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -45,7 +44,7 @@ public class AccountResource {
     public Response getAccountById(@PathParam("id") int id) {
         try {
 
-            Account account = Resource.accountController.findById(id);
+            Account account = Resource.ACCOUNT_DAO.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(account).build();
             return Response.ok(jsonObject.toString()).build();
 

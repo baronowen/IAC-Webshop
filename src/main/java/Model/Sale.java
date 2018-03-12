@@ -26,6 +26,16 @@ public class Sale {
     @OneToOne
     private Product product;
 
+    public Sale() {}
+
+    public Sale(Date fromDate, Date toDate, double salePrice, String description, Product product) {
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.salePrice = salePrice;
+        this.description = description;
+        this.product = product;
+    }
+
     //region getters/setters
 
     public int getId() {
@@ -73,7 +83,6 @@ public class Sale {
     }
 
     //endregion
-
 
     @Override
     public String toString() {
