@@ -2,8 +2,8 @@ import Model.Address;
 import Model.Order;
 import Model.OrderLine;
 import Model.Product;
-import Persistance.AddressDao;
-import Persistance.OrderDao;
+import Persistance.Dao.AddressDao;
+import Persistance.Dao.OrderDao;
 
 import java.util.HashSet;
 import java.util.Set;

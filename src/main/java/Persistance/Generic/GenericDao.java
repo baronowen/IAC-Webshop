@@ -60,14 +60,14 @@ public class GenericDao<T> implements GenericController<T> {
         }
     }
 
-    public T findById(String id) {
-        Session session = sessionFactory.openSession();
-
-        T entity = session.find(type, id);
-
-        session.close();
-        return entity;
-    }
+//    public T findById(String id) {
+//        Session session = sessionFactory.openSession();
+//
+//        T entity = session.find(type, id);
+//
+//        session.close();
+//        return entity;
+//    }
 
     public T findById(int id) {
         Session session = sessionFactory.openSession();

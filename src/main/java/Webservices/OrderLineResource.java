@@ -26,7 +26,7 @@ public class OrderLineResource {
     public Response getAllOrderLines() {
         try {
 
-            List<OrderLine> orderLineList = Resource.ORDER_LINE_DAO.findAll();
+            List<OrderLine> orderLineList = Resource.ORDER_LINE_CONTROLLER.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(orderLineList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -44,7 +44,7 @@ public class OrderLineResource {
     public Response getOrderLineById(@PathParam("id") int id) {
         try {
 
-            OrderLine orderLine = Resource.ORDER_LINE_DAO.findById(id);
+            OrderLine orderLine = Resource.ORDER_LINE_CONTROLLER.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(orderLine).build();
             return Response.ok(jsonObject.toString()).build();
 

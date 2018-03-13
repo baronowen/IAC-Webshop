@@ -26,7 +26,7 @@ public class SaleResource {
     public Response getAllSales() {
         try {
 
-            List<Sale> saleList = Resource.SALE_DAO.findAll();
+            List<Sale> saleList = Resource.SALE_CONTROLLER.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(saleList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -44,7 +44,7 @@ public class SaleResource {
     public Response getSaleById(@PathParam("id") int id) {
         try {
 
-            Sale sale = Resource.SALE_DAO.findById(id);
+            Sale sale = Resource.SALE_CONTROLLER.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(sale).build();
             return Response.ok(jsonObject.toString()).build();
 

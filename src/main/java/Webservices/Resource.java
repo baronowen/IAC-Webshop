@@ -23,14 +23,14 @@ public class Resource {
     private static final Reflections reflections = new Reflections("Model", new SubTypesScanner(false));
     private static final Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf(Object.class);
 
-    public static final AccountDao ACCOUNT_DAO = new AccountDao();
-    public static final AddressDao ADDRESS_DAO = new AddressDao();
-    public static final CategoryDao CATEGORY_DAO = new CategoryDao();
-    public static final CustomerDao CUSTOMER_DAO = new CustomerDao();
-    public static final OrderDao ORDER_DAO = new OrderDao();
-    public static final OrderLineDao ORDER_LINE_DAO = new OrderLineDao();
-    public static final ProductDao PRODUCT_DAO = new ProductDao();
-    public static final SaleDao SALE_DAO = new SaleDao();
+    public static final AccountController ACCOUNT_CONTROLLER = AccountController.getInstance();
+    public static final AddressController ADDRESS_CONTROLLER = AddressController.getInstance();
+    public static final CategoryController CATEGORY_CONTROLLER = CategoryController.getInstance();
+    public static final CustomerController CUSTOMER_CONTROLLER = CustomerController.getInstance();
+    public static final OrderController ORDER_CONTROLLER = OrderController.getInstance();
+    public static final OrderLineController ORDER_LINE_CONTROLLER = OrderLineController.getInstance();
+    public static final ProductController PRODUCT_CONTROLLER = ProductController.getInstance();
+    public static final SaleController SALE_CONTROLLER = SaleController.getInstance();
 
     // Supports attributes: String, double, int, boolean, Collection, Date
     public static JsonObjectBuilder objectToJsonObjectBuilder(Object o) {

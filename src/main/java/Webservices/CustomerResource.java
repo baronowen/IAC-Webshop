@@ -26,7 +26,7 @@ public class CustomerResource {
     public Response getAllCustomers() {
         try {
 
-            List<Customer> customerList = Resource.CUSTOMER_DAO.findAll();
+            List<Customer> customerList = Resource.CUSTOMER_CONTROLLER.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(customerList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -44,7 +44,7 @@ public class CustomerResource {
     public Response getCustomerById(@PathParam("id") int id) {
         try {
 
-            Customer customer = Resource.CUSTOMER_DAO.findById(id);
+            Customer customer = Resource.CUSTOMER_CONTROLLER.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(customer).build();
             return Response.ok(jsonObject.toString()).build();
 

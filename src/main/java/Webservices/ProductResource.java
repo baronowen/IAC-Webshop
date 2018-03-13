@@ -27,7 +27,7 @@ public class ProductResource {
     public Response getAllProducts() {
         try {
 
-            List<Product> productList = Resource.PRODUCT_DAO.findAll();
+            List<Product> productList = Resource.PRODUCT_CONTROLLER.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(productList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -45,7 +45,7 @@ public class ProductResource {
     public Response getProductById(@PathParam("id") int id) {
         try {
 
-            Product product = Resource.PRODUCT_DAO.findById(id);
+            Product product = Resource.PRODUCT_CONTROLLER.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(product).build();
             return Response.ok(jsonObject.toString()).build();
 

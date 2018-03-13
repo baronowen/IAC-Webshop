@@ -26,7 +26,7 @@ public class CategoryResource {
     public Response getAllCategories() {
         try {
 
-            List<Category> categoryList = Resource.CATEGORY_DAO.findAll();
+            List<Category> categoryList = Resource.CATEGORY_CONTROLLER.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(categoryList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -44,7 +44,7 @@ public class CategoryResource {
     public Response getAccountById(@PathParam("id") int id) {
         try {
 
-            Category category = Resource.CATEGORY_DAO.findById(id);
+            Category category = Resource.CATEGORY_CONTROLLER.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(category).build();
             return Response.ok(jsonObject.toString()).build();
 

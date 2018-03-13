@@ -28,7 +28,7 @@ public class AuthenticationResource {
                                          @FormParam("password") String password) {
         System.out.println("Starting authentication...");
         try {
-            boolean role = Resource.ACCOUNT_DAO.isLoginCorrect(username, Encryption.encrypt(password));
+            boolean role = Resource.ACCOUNT_CONTROLLER.isLoginCorrect(username, Encryption.encrypt(password));
             if (role == false) { throw new IllegalArgumentException("No user found!"); }
             JsonObjectBuilder job = Json.createObjectBuilder();
             // Issue a token for the user

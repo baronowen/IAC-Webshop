@@ -1,11 +1,12 @@
-package Controller;
+package Persistance;
 
 import Model.Account;
-import Persistance.AccountDao;
+import Persistance.Dao.AccountDao;
+import Persistance.Generic.GenericController;
 
 import java.util.ArrayList;
 
-public class AccountController {
+public class AccountController implements GenericController<Account> {
     private static AccountController instance = null;
     private AccountDao accountDao;
 

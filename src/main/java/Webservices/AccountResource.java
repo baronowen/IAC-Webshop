@@ -26,7 +26,7 @@ public class AccountResource {
     public Response getAllAccounts() {
         try {
 
-            List<Account> accountList = Resource.ACCOUNT_DAO.findAll();
+            List<Account> accountList = Resource.ACCOUNT_CONTROLLER.findAll();
             JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(accountList).build();
             return Response.ok(jsonArray.toString()).build();
 
@@ -44,7 +44,7 @@ public class AccountResource {
     public Response getAccountById(@PathParam("id") int id) {
         try {
 
-            Account account = Resource.ACCOUNT_DAO.findById(id);
+            Account account = Resource.ACCOUNT_CONTROLLER.findById(id);
             JsonObject jsonObject = Resource.objectToJsonObjectBuilder(account).build();
             return Response.ok(jsonObject.toString()).build();
 
