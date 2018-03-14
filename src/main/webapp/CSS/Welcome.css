@@ -2,12 +2,8 @@ h1 {
     text-align:center;
 }
 
-.shoppingcart {
-    /*outline: 2px solid #000000;*/
-    /*padding: 10px;*/
-    margin-top: 7px;
-}
-
-#srch-term {
-    width: 500px;
+.test, .picture, .product {
+    outline: 2px solid #000000;
+    padding: 10px;
+    margin-top: 10px;
 }

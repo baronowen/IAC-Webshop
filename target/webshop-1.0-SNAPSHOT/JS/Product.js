@@ -15,6 +15,7 @@ function loadProduct() {
             $("#name").html(data.name);
             $("#price").html("€ " + data.price);
             $("#descr").html(data.description);
+            $("title").html(data.name);
             // console.log(data.name);
             // console.log(data.price);
             // console.log(data.description);
