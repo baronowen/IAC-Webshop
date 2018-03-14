@@ -12,7 +12,7 @@ public class GenericDao<T> implements GenericController<T> {
     private final SessionFactory sessionFactory;
     private final Class<T> type;
 
-    private Session getSession() {
+    public Session getSession() {
         return sessionFactory.openSession();
     }
 

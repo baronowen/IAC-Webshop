@@ -42,4 +42,8 @@ public class AccountController implements GenericController<Account> {
     public ArrayList<Account> findAll(){
         return accountDao.findAll();
     }
+
+    public boolean isLoginCorrect(String username, String password){
+        return accountDao.isLoginCorrect(username,password);
+    }
 }
