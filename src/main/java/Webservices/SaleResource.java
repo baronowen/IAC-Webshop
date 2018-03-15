@@ -55,5 +55,23 @@ public class SaleResource {
 
     }
 
+    @GET
+    @Path("/week")
+    @Produces("application/json")
+    public Response getSaleByWeek() {
+
+        try {
+
+            List<Sale> saleList = Resource.SALE_CONTROLLER.findByThisWeek();
+            JsonArray jsonArray = Resource.objectsToJsonArrayBuilder(saleList).build();
+            return Response.ok(jsonArray.toString()).build();
+
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+    }
+
+
 
 }
