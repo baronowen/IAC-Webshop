@@ -13,8 +13,8 @@ function loadSales() {
         method: "GET",
         success: [function(data) {
             $("#s_name").html(data.product.name);
-            $("#from").html(data.fromDate);
-            $("#todate").html(data.toDate);
+            // $("#from").html(data.)
+            // $("#todate").html(data.)
             $("#s_descr").html(data.description);
             $("#s_price").html(data.salePrice);
             $("#s_p_descr").html(data.product.description);
