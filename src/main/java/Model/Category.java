@@ -1,6 +1,7 @@
 package Model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Category")
@@ -15,13 +16,17 @@ public class Category {
     @Column(nullable = false)
     private String description;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Product> products;
+
 //    private image
 
     private Category(){}
 
-    public Category(String name, String description) {
+    public Category(String name, String description, Set<Product> products) {
         this.name = name;
         this.description = description;
+        this.products = products;
     }
 
     //region getters/setters
@@ -46,6 +51,14 @@ public class Category {
         this.description = description;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
     //endregion
 
     @Override
@@ -54,6 +67,7 @@ public class Category {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", products=" + products +
                 '}';
     }
 }

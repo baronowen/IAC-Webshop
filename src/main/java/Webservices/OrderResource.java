@@ -11,14 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-/**
- * Created by nickw on 7-3-2018.
- */
-
-
 @Path("/order")
 public class OrderResource {
-
 
     @GET
 //    @RolesAllowed({"user"})

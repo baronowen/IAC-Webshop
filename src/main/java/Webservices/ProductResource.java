@@ -4,10 +4,7 @@ import Model.Product;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -54,6 +51,52 @@ public class ProductResource {
         }
 
 
+    }
+
+    @POST
+    @Produces("application/json")
+    public Response createProduct(
+            @PathParam("name")  String name,
+            @PathParam("price") double price,
+            @PathParam("description") String description)
+    {
+        try{
+            Product product = new Product.ProductBuilder()
+                    .name(name)
+                    .description(description)
+                    .price(price)
+                    .build();
+
+            Resource.PRODUCT_CONTROLLER.insert(product);
+
+            return Response.accepted().build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
+
+    @PUT
+    @Produces("application/json")
+    public Response createProduct(
+            @PathParam("id")          int id,
+            @PathParam("name")        String name,
+            @PathParam("price")       double price,
+            @PathParam("description") String description)
+    {
+        try{
+            Product product = Resource.PRODUCT_CONTROLLER.findById(id);
+
+            //Update product
+            product.setName(name);
+            product.setDescription(description);
+            product.setPrice(price);
+
+            Resource.PRODUCT_CONTROLLER.update(product);
+
+            return Response.accepted().build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
 
 
