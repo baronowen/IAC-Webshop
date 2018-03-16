@@ -57,6 +57,7 @@ public class SaleResource {
 
     @GET
     @Path("/week")
+    //    @RolesAllowed({"user"})
     @Produces("application/json")
     public Response getSaleByWeek() {
 
