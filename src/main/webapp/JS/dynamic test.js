@@ -1,6 +1,6 @@
 //adding a div row dynamically
 $("#sales").append(
-    "<div class=container-flluid>" +
+    // "<div class=container-flluid>" +
     "<div class=row>" +
     "<div class=col-md-3>" +
     "<div class=test></div>" +
@@ -36,5 +36,5 @@ $("#sales").append(
     "<div class=col-md-3>" +
     "<div class=test></div>" +
     "</div>" +
-    "</div>" +
-    "</div>");
+    "</div>");/* +*/
+    // "</div>");

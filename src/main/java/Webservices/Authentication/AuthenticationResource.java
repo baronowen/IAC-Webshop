@@ -24,19 +24,19 @@ public class AuthenticationResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response authenticateUser(	@FormParam("username") String username,
+    public Response authenticateUser(	@FormParam("email") String email,
                                          @FormParam("password") String password) {
         System.out.println("Starting authentication...");
         try {
-            boolean role = Resource.ACCOUNT_CONTROLLER.isLoginCorrect(username, Encryption.encrypt(password));
-            if (role == false) { throw new IllegalArgumentException("No user found!"); }
+            String role = Resource.ACCOUNT_CONTROLLER.isLoginCorrect(email, Encryption.encrypt(password));
+            if (role == null) { throw new IllegalArgumentException("No user found!"); }
             JsonObjectBuilder job = Json.createObjectBuilder();
             // Issue a token for the user
             Calendar expiration = Calendar.getInstance();
             expiration.add(Calendar.MINUTE, 30);
             String token = Jwts.builder()
-                    .setSubject(username)
-                    .claim("role", "user")
+                    .setSubject(email)
+                    .claim("role", role)
                     .setExpiration(expiration.getTime())
                     .signWith(SignatureAlgorithm.HS512, key)
                     .compact();

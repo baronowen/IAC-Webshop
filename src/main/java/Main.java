@@ -1,8 +1,8 @@
 import Model.*;
-import Persistance.CategoryController;
-import Persistance.Dao.OrderDao;
-import Persistance.OrderController;
-import Persistance.SaleController;
+import Persistance.*;
+import Webservices.Authentication.AuthenticationResource;
+import Webservices.Authentication.Encryption;
+import Webservices.Resource;
 
 import java.sql.Date;
 import java.util.HashSet;
@@ -10,9 +10,14 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
+
         OrderController oc = OrderController.getInstance();
         CategoryController categoryController = CategoryController.getInstance();
         SaleController saleController = SaleController.getInstance();
+        AccountController ac = AccountController.getInstance();
+        CustomerController cc = CustomerController.getInstance();
+
+        Set<Product> products = new HashSet<Product>();
 
         Address address = new Address("straat", 25, "stad", "potcode");
 
@@ -36,7 +41,6 @@ public class Main {
 
 
         //Create category
-        Set<Product> products = new HashSet<Product>();
         products.add(apple);
         products.add(peanut);
         products.add(peer);
@@ -62,5 +66,17 @@ public class Main {
         Sale sale = new Sale(dateFrom, dateTo, 89.00, "DIKKE TOFFE PEER VOOR VEEL MINDER. WOOOOOOOOOW, ITS AMAZING!", peer);
 
         saleController.insert(sale);
+
+        //User
+        Address address2 = Resource.ADDRESS_CONTROLLER.findAll().get(0);
+        Customer customer = new Customer("Nick", "Windt", 643206739, "25-05-1998", address);
+        Account account = new Account(new Date(20), address2, customer, true, "nickwindt@hotmail.nl", Encryption.encrypt("wachtwoord"), AccountRole.customer);
+
+        cc.insert(customer);
+        ac.insert(account);
+
+        AuthenticationResource ar = new AuthenticationResource();
+        ar.authenticateUser("nickwindt@hotmail.nl", "wachtwoord");
+
     }
 }
