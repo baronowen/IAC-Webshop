@@ -42,8 +42,4 @@ public class SaleController implements GenericController<Sale> {
     public ArrayList<Sale> findAll(){
         return saleDao.findAll();
     }
-
-    public ArrayList<Sale> findByThisWeek(){
-        return saleDao.findByThisWeek();
-    }
 }

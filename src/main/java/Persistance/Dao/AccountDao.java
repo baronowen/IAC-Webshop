@@ -13,6 +13,7 @@ public class AccountDao extends GenericDao<Account> {
         super();
     }
 
+    //TODO Add functionality
     public boolean isLoginCorrect(String username, String password) {
 
         Session session = super.getSession();
