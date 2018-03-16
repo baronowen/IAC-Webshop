@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="../CSS/Common.css">
     <link rel="stylesheet" href="../CSS/ProductList.css">
 
+    <script src="../JS/Common.js"></script>
+
     <meta charset="UTF-8">
     <title>Category</title>
 </head>
@@ -23,8 +25,8 @@
                     <a class="navbar-brand" href="#">Webshop 18</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="Welcome.html">Home</a></li>
-                    <li><a href="#">Voedsel</a></li>
+                    <li><a href="Welcome.html">Home</a></li>
+                    <li class="active"><a href="#">Voedsel</a></li>
                     <li><a href="#">Category 2</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Meer
@@ -84,7 +86,14 @@
                             <div class="picture"></div>
                         </div>
                         <div class="col-md-8">
-                            <div class="info"></div>
+                            <div class="info">
+                                <label> Name:</label>
+                                <label id="name"></label><br>
+                                <label> Price:</label>
+                                <label id="price"></label><br>
+                                <label> Description: </label>
+                                <label id="descr"></label>
+                            </div>
                         </div>
                     </div>
                 </div>

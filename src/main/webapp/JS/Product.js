@@ -4,6 +4,7 @@ function initPage() {
     console.log("Initialize page");
 
     loadProduct();
+    loadCategories();
 }
 
 function loadProduct() {

@@ -61,8 +61,8 @@ public class Main {
         oc.insert(order);
 
         //create sale
-        Date dateFrom = Date.valueOf("2018-03-15");
-        Date dateTo   = Date.valueOf("2018-03-21");
+        Date dateFrom = Date.valueOf("2018-03-13");
+        Date dateTo   = Date.valueOf("2018-03-19");
         Sale sale = new Sale(dateFrom, dateTo, 89.00, "DIKKE TOFFE PEER VOOR VEEL MINDER. WOOOOOOOOOW, ITS AMAZING!", peer);
 
         saleController.insert(sale);
@@ -70,13 +70,13 @@ public class Main {
         //User
         Address address2 = Resource.ADDRESS_CONTROLLER.findAll().get(0);
         Customer customer = new Customer("Nick", "Windt", 643206739, "25-05-1998", address);
-        Account account = new Account(new Date(20), address2, customer, true, "nickwindt@hotmail.nl", Encryption.encrypt("wachtwoord"), AccountRole.customer);
+//        Account account = new Account(new Date(20), address2, customer, true, "nickwindt@hotmail.nl", Encryption.encrypt("wachtwoord"), AccountRole.customer);
 
         cc.insert(customer);
-        ac.insert(account);
+//        ac.insert(account);
 
-        AuthenticationResource ar = new AuthenticationResource();
-        ar.authenticateUser("nickwindt@hotmail.nl", "wachtwoord");
+//        AuthenticationResource ar = new AuthenticationResource();
+//        ar.authenticateUser("nickwindt@hotmail.nl", "wachtwoord");
 
     }
 }
