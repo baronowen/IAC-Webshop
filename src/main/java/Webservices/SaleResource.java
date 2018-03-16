@@ -55,6 +55,7 @@ public class SaleResource {
 
     }
 
+    //TODO test when data is in databases
     @GET
     @Path("/week")
     //    @RolesAllowed({"user"})
@@ -72,6 +73,7 @@ public class SaleResource {
         }
 
     }
+
 
 
 
