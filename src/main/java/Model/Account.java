@@ -20,7 +20,7 @@ public class Account {
     @OneToOne(cascade = CascadeType.ALL)
     private Address invoiceAddress;
 
-    @JoinColumn(nullable = false)
+    @JoinColumn()
     @OneToOne
     private Customer customer;
 
@@ -32,6 +32,9 @@ public class Account {
 
     @Column
     private String password;
+
+    @Column
+    private String role;
 
     private Account(){}
 
