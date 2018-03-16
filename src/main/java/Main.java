@@ -14,8 +14,8 @@ public class Main {
         AddressDao ac = new AddressDao();
         Address address = new Address("straat", 25, "stad", "potcode");
 
-        Product apple = new Product( "appel", 12.50, "omschrijving");
-        Product peanut = new Product("peanut", 19.50, "omschrijving");
+//        Product apple = new Product( "appel", 12.50, "omschrijving");
+//        Product peanut = new Product("peanut", 19.50, "omschrijving");
 
 //        OrderLine olApple = new OrderLine(5,5.25, apple);
 //        OrderLine olPeanut = new OrderLine(5,5.85, apple);
