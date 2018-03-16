@@ -34,17 +34,18 @@ public class Account {
     private String password;
 
     @Column
-    private String role;
+    private AccountRole role;
 
     private Account(){}
 
-    public Account(Date openDate, Address invoiceAddress, Customer customer, boolean isActive, String email, String password) {
+    public Account(Date openDate, Address invoiceAddress, Customer customer, boolean isActive, String email, String password, AccountRole role) {
         this.openDate = openDate;
         this.invoiceAddress = invoiceAddress;
         this.customer = customer;
         this.isActive = isActive;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     //region getters/setters
@@ -93,6 +94,22 @@ public class Account {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public AccountRole getRole() {
+        return role;
+    }
+
+    public void setRole(AccountRole role) {
+        this.role = role;
+    }
+
     //endregion
 
     @Override
@@ -105,6 +122,7 @@ public class Account {
                 ", isActive=" + isActive +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

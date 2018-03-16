@@ -1,13 +1,21 @@
 import Model.*;
+import Persistance.Dao.AccountDao;
 import Persistance.Dao.AddressDao;
+import Persistance.Dao.CustomerDao;
 import Persistance.Dao.OrderDao;
+import Webservices.Authentication.AuthenticationResource;
+import Webservices.Authentication.Encryption;
+import Webservices.Resource;
 
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
         OrderDao oc = new OrderDao();
+        AccountDao ac = new AccountDao();
+        CustomerDao cc = new CustomerDao();
 
         Address address = new Address("straat", 25, "stad", "potcode");
 
@@ -27,5 +35,21 @@ public class Main {
         Order order = new Order(address, lines);
 
         oc.insert(order);
+
+        Address address2 = Resource.ADDRESS_CONTROLLER.findAll().get(0);
+
+
+        Customer customer = new Customer("Nick", "Windt", 643206739, "25-05-1998", address);
+
+        cc.insert(customer);
+
+
+        Account account = new Account(new Date(20), address2, customer, true, "nickwindt@hotmail.nl", Encryption.encrypt("wachtwoord"), AccountRole.customer);
+
+        ac.insert(account);
+
+        AuthenticationResource ar = new AuthenticationResource();
+        ar.authenticateUser("nickwindt@hotmail.nl", "wachtwoord");
+
     }
 }
