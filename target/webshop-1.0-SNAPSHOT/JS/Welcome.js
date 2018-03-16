@@ -4,10 +4,11 @@ function initPage() {
     console.log("Initialized page");
 
     loadSales();
+    loadCategories();
 }
 
 function loadSales() {
-    console.log("../restservices/sale/1")
+    console.log("../restservices/sale/1");
     $.ajax({
         url: "../restservices/sale/1",
         method: "GET",
@@ -24,3 +25,25 @@ function loadSales() {
     });
     console.log('einde');
 };
+
+function loadCategories() {
+    console.log("../restservices/category");
+    var i = 0;
+    $.ajax({
+        url: "../restservices/category",
+        method: "GET",
+        success: [function(data) {
+            $.each(data,function(i,categories) {
+                console.log(categories.name);
+                i++;
+                if(i>2) {
+                    $(".dropdown-menu").append(
+                        "<li><a href=#>categories.name</a></li>"
+                    )
+                }
+                $("#c"+i+"").text(categories.name);
+
+            })
+        }]
+    })
+}
