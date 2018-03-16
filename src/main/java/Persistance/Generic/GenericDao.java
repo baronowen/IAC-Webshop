@@ -26,7 +26,7 @@ public class GenericDao<T> implements GenericController<T> {
     }
 
     public void insert(T entity) {
-        Session session = sessionFactory.openSession();
+        Session session = getSession();
         //Insert a object into the database.
         Transaction tx = null;
         try {
@@ -43,7 +43,7 @@ public class GenericDao<T> implements GenericController<T> {
 
     public void update(T entity) {
         //Update a object into the database.
-        Session session = sessionFactory.openSession();
+        Session session = getSession();
         Transaction tx = null;
 
         try {
@@ -70,7 +70,7 @@ public class GenericDao<T> implements GenericController<T> {
 //    }
 
     public T findById(int id) {
-        Session session = sessionFactory.openSession();
+        Session session = getSession();
 
         T entity = session.find(type, id);
 
@@ -80,7 +80,7 @@ public class GenericDao<T> implements GenericController<T> {
     }
 
     public void delete(T entity) {
-        Session session = sessionFactory.openSession();
+        Session session = getSession();
         Transaction tx = null;
 
         try {
@@ -99,7 +99,7 @@ public class GenericDao<T> implements GenericController<T> {
 
     @SuppressWarnings("unchecked")
     public ArrayList<T> findAll() {
-        Session session = sessionFactory.openSession();
+        Session session = getSession();
 
         ArrayList<T> entities = (ArrayList<T>) session.createQuery("from "+type.getName()).getResultList();
 

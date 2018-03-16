@@ -19,12 +19,17 @@ public class Product {
     @Column
     private String description;
 
+    @JoinColumn(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    private Category category;
+
     private Product(){}
 
-    public Product(String name, double price, String description) {
+    public Product(String name, double price, String description, Category category) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.category = category;
     }
 
     //region getters/setters
@@ -57,6 +62,14 @@ public class Product {
         this.description = description;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     //endregion
 
     @Override
@@ -66,6 +79,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
 }
