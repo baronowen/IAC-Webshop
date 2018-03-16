@@ -6,3 +6,6 @@ function initPage() {
 
 }
 
+function loadProducts() {
+    console.log("../restservices/product")
+}
