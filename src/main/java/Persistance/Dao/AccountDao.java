@@ -14,25 +14,30 @@ public class AccountDao extends GenericDao<Account> {
     }
 
     //TODO Add functionality
-    public boolean isLoginCorrect(String username, String password) {
+    public String isLoginCorrect(String username, String password) {
 
         Session session = super.getSession();
+        Account account;
         try {
             Query query = session.createQuery("from " + Account.class.getName() + " where email = :email AND password = :password ");
             query.setParameter("email", username);
             query.setParameter("password", password);
 
             // if there is no account, it throws an error
-            Account account = (Account) query.getResultList().get(0);
+            account = (Account) query.getResultList().get(0);
         } catch (Exception e) {
             //e.printStackTrace();
-            return false;
+            System.out.println("Login unsuccesfull, password: " + password + " didn't match!");
+            return null;
         } finally {
             session.close();
         }
 
+
+        System.out.println("Login succes, role: " + account.getRole().toString());
+
         // if an account was found, return true
-        return true;
+        return account.getRole().toString();
     }
 
 }
