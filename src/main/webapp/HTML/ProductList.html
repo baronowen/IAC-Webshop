@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../CSS/ProductList.css">
 
     <script src="../JS/Common.js"></script>
+    <script src="../JS/ProductList.js"></script>
 
     <meta charset="UTF-8">
     <title>Category</title>
@@ -22,22 +23,18 @@
         <nav class="navbar navbar-inverse">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Webshop 18</a>
+                    <a class="navbar-brand" href="Welcome.html">Webshop 18</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="Welcome.html">Home</a></li>
-                    <li class="active"><a href="#">Voedsel</a></li>
-                    <li><a href="#">Category 2</a></li>
+                    <li class="active"><a href="Welcome.html">Home</a></li>
+                    <li><a id="c1" href="ProductList.html">Category 1</a></li>
+                    <li><a id="c2" href="#">Category 2</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Meer
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Category 3</a></li>
-                            <li><a href="#">Category 4</a></li>
-                            <li><a href="#">Category 5</a></li>
                         </ul>
                     </li>
-
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="Signup.html"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>
@@ -75,7 +72,7 @@
     </div>
 
     <div class="PList">
-        <div class="container-fluid">
+        <div class="pList container-fluid">
             <div class="row">
                 <div class="col-md-3">
                     <div class="test"></div>
@@ -88,11 +85,13 @@
                         <div class="col-md-8">
                             <div class="info">
                                 <label> Name:</label>
-                                <label id="name"></label><br>
+                                <label id="name_1"></label><br>
                                 <label> Price:</label>
-                                <label id="price"></label><br>
+                                <label id="price_1"></label><br>
+                                <label> SalePrice:</label>
+                                <label id="saleprice_1"></label><br>
                                 <label> Description: </label>
-                                <label id="descr"></label>
+                                <label id="descr_1"></label>
                             </div>
                         </div>
                     </div>

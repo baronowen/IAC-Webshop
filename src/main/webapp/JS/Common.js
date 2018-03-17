@@ -16,7 +16,7 @@ function loadCategories() {
                 }
                 $("#c"+i+"").text(categories.name);
 
-            })
+            });
         }]
-    })
-}
+    });
+};
