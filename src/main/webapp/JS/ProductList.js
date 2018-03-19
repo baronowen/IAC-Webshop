@@ -12,47 +12,48 @@ function loadProducts() {
     $.ajax({
         url: "../restservices/category/1",
         method: "GET",
-        success: [function(data) {
-            $.each(data.products,function(i,product) {
-                // console.log(product);
-                console.log(product.name);
-                console.log(product.price);
-                console.log(product.description);
-                // console.log(cat_product.product.name);
-                // i++;
-                $(".pList").append(
-                    "<div class=container-fluid>"> +
-                        "<div class=row>" +
-                            "<div class=col-md-3>" +
-                                "<div class=test></div>" +
-                            "</div>" +
-                            "<div class=col-md-6>" +
-                                "<div class=list>" +
-                                    "<div class=col-md-4>" +
-                                        "<div class=picture></div>" +
-                                    "</div>" +
-                                    "<div class=col-md-8>" +
-                                        "<div class=info>" + /*console.log(product.name) +*/
-                                            "<label> Name:</label>" +
-                                            "<label id=name>" + product.name + "</label><br>" +
-                                            "<label> Price:</label>" +
-                                            "<label id=price>" + product.price + "</label><br>" +
-                                            "<label> SalePrice:</label>" +
-                                            "<label id=saleprice></label><br>" +
-                                            "<label> Description: </label>" +
-                                            "<label id=descr>" + product.description + "</label>" +
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>" +
-                            "<div class=col-md-3>" +
-                                "<div class=test></div>" +
-                            "</div>" +
-                        "</div>" +
-                    "</div>" /*+ console.log(product.price)*/
-                )
-                // console.log(product.description);
+        success: [function(category) {
+            console.log("Category:");
+            console.log(category);
+            console.log("\n");
+
+            var products = category.products;
+            $.each(products,function(i,product) {
+                console.log("Product:");
+                console.log(product)
+                console.log("\n");
+
+                var mainDiv = jQuery('<div/>', {
+                    class: 'col-md-4',
+                    text: product.name
+                })
+
+                jQuery('<div/>', {
+                    text: 'Naam: ' + product.name
+                }).appendTo(mainDiv);
+
+                jQuery('<div/>', {
+                    text: 'Omschrijving: ' + product.description
+                }).appendTo(mainDiv);
+
+                jQuery('<div/>', {
+                    text: 'Prijs: ' + product.price
+                }).appendTo(mainDiv);
+
+                jQuery('<div/>', {
+                    onclick: 'addToCart(' + i + ')',
+                    class: 'clickerDeClick',
+                    text: 'VOEG TE AAN WINKELWAGEN:'
+                }).appendTo(mainDiv);
+
+
+                mainDiv.appendTo('.pList');
             });
         }]
     });
-};
+}
+
+function addToCart(i) {
+    console.log('Add to cart');
+    console.log(i);
+}
