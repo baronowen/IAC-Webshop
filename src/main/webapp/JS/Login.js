@@ -27,6 +27,7 @@ function login() {
             var storage = JSON.parse(response);
             window.sessionStorage.setItem("sessionToken",storage.token);
             window.sessionStorage.setItem("role", storage.role);
+            location.replace("../HTML/Welcome.html");
 
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log("Login Failed!");

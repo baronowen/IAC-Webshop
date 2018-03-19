@@ -41,7 +41,7 @@ public class CategoryResource {
     @Path("{id}")
 //    @RolesAllowed({"user"})
     @Produces("application/json")
-    public Response getAccountById(@PathParam("id") int id) {
+    public Response getCategoryById(@PathParam("id") int id) {
         try {
 
             Category category = Resource.CATEGORY_CONTROLLER.findById(id);

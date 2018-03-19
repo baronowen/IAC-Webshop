@@ -44,7 +44,7 @@ public class AddressResource {
     @Path("{id}")
 //    @RolesAllowed({"user"})
     @Produces("application/json")
-    public Response getAccountById(@PathParam("id") int id) {
+    public Response getAddressById(@PathParam("id") int id) {
         try {
 
             Address address = Resource.ADDRESS_CONTROLLER.findById(id);
