@@ -42,6 +42,7 @@ public class AuthenticationResource {
                     .compact();
             // Return the token on the response
             job.add("token", token);
+            job.add("role", role);
             return Response.ok(job.build().toString()).build();
         } catch (JwtException | IllegalArgumentException e) {
             return Response.status(Response.Status.UNAUTHORIZED).build();

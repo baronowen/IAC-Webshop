@@ -1,6 +1,25 @@
 function login() {
     console.log("trying to log in");
     var data = $("#login").serialize();
+
+    console.log(data);
+
+    // $.ajax({
+    //     url: "../restservices/authentication",
+    //     method: "POST",
+    //     data: data,
+    //     succes: function (response) {
+    //         console.log("SUCCES!");
+    //     },
+    //     complete: function (response) {
+    //         if (response.status === 200) {
+    //             console.log("SUCCES");
+    //         } else {
+    //             console.log("Error");
+    //         }
+    //     }
+    // });
+
     $.post("../restservices/authentication",
         data,
         function(response) {
@@ -15,4 +34,5 @@ function login() {
             console.log(textStatus);
             console.log(errorThrown);
     })
+
 }

@@ -1,6 +1,5 @@
 package Persistance.Dao;
 
-import Model.Account;
 import Model.Sale;
 import Persistance.Generic.GenericController;
 import Persistance.Generic.GenericDao;
@@ -10,7 +9,6 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class SaleDao extends GenericDao<Sale> implements GenericController<Sale> {
 
