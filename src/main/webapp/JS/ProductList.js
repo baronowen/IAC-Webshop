@@ -14,7 +14,7 @@ function loadProducts() {
         method: "GET",
         success: [function(data) {
             $.each(data.products,function(i,product) {
-                console.log(product);
+                // console.log(product);
                 console.log(product.name);
                 console.log(product.price);
                 console.log(product.description);
@@ -32,7 +32,7 @@ function loadProducts() {
                                         "<div class=picture></div>" +
                                     "</div>" +
                                     "<div class=col-md-8>" +
-                                        "<div class=info>" +
+                                        "<div class=info>" + /*console.log(product.name) +*/
                                             "<label> Name:</label>" +
                                             "<label id=name>" + product.name + "</label><br>" +
                                             "<label> Price:</label>" +
@@ -49,8 +49,9 @@ function loadProducts() {
                                 "<div class=test></div>" +
                             "</div>" +
                         "</div>" +
-                    "</div>"
+                    "</div>" /*+ console.log(product.price)*/
                 )
+                // console.log(product.description);
             });
         }]
     });

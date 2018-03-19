@@ -3,26 +3,22 @@ $(document).ready(initPage());
 function initPage() {
     console.log("Initialized page");
 
+    loadCategories();
     loadSales();
-    // loadCategories();
 }
 
 function loadSales() {
-    // console.log("../restservices/sale/1");
     $.ajax({
         url: "../restservices/sale",
         method: "GET",
         success: [function(data) {
-            // console.log(data);
-            // console.log(data.fromDate);
-            // console.log(data.product.name);
             $.each(data, function(i,sale) {
-                console.log(sale.fromDate);
+                // console.log(sale.fromDate);
                 // console.log(data.fromDate);
-                console.log(sale.product.price);
+                // console.log(sale.product.price);
                 // console.log(data.product.price);
                 // console.log(data);
-                i++;
+                // i++;
                 $(".sales").append(
                     "<div class=container-fluid>" +
                         "<div class=row>" +
@@ -37,17 +33,17 @@ function loadSales() {
                                     "<div class=col-md-8>" +
                                         "<div class=info>" +
                                             "<label> Name:</label>" +
-                                            "<label id=name>" + sale.product.name + "</label><br>" +
+                                            "<label>" + sale.product.name + "</label><br>" +
                                             "<label> Price:</label>" +
-                                            "<label id=price>" + sale.product.price + "</label><br>" +
+                                            "<label>" + sale.product.price + "</label><br>" +
                                             "<label> SalePrice:</label>" +
-                                            "<label id=saleprice>" + sale.salePrice + "</label><br>" +
+                                            "<label>" + sale.salePrice + "</label><br>" +
                                             "<label> From:</label>" +
-                                            "<label id=from>" + sale.fromDate + "</label><br>" +
+                                            "<label>" + sale.fromDate + "</label><br>" +
                                             "<label> To: </label>" +
-                                            "<label id=to>" + sale.toDate + "</label><br>" +
+                                            "<label>" + sale.toDate + "</label><br>" +
                                             "<label> Description: </label>" +
-                                            "<label id=descr>" + sale.product.description + "</label>" +
+                                            "<label>" + sale.product.description + "</label>" +
                                         "</div>" +
                                     "</div>" +
                                 "</div>" +
@@ -59,15 +55,6 @@ function loadSales() {
                     "</div>"
                 )
             });
-
-            // $("#s_name").html(data.product.name);
-            // $("#from").html(data.fromDate);
-            // $("#todate").html(data.toDate);
-            // $("#s_descr").html(data.description);
-            // $("#s_price").html(data.salePrice);
-            // $("#s_p_descr").html(data.product.description);
-
         }]
     });
-    // console.log('einde');
 };
