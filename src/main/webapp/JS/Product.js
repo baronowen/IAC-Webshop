@@ -3,8 +3,8 @@ $(document).ready(initPage());
 function initPage() {
     console.log("Initialize page");
 
-    loadProduct();
     loadCategories();
+    loadProduct();
 }
 
 function loadProduct() {
