@@ -1,8 +1,6 @@
 $(document).ready(initPage());
 
 function initPage() {
-    console.log("Initialized page");
-
     loadCategories();
     loadSales();
 }
@@ -13,12 +11,6 @@ function loadSales() {
         method: "GET",
         success: [function(data) {
             $.each(data, function(i,sale) {
-                // console.log(sale.fromDate);
-                // console.log(data.fromDate);
-                // console.log(sale.product.price);
-                // console.log(data.product.price);
-                // console.log(data);
-                // i++;
                 $(".sales").append(
                     "<div class=container-fluid>" +
                         "<div class=row>" +
@@ -31,7 +23,8 @@ function loadSales() {
                                         "<div class=picture></div>" +
                                     "</div>" +
                                     "<div class=col-md-8>" +
-                                        "<div class=info>" +
+                                        "<div class=info> <a class=link href=Product.html>" +
+                                            "<label>" + sale.product.id + "</label><br>" +
                                             "<label> Name:</label>" +
                                             "<label>" + sale.product.name + "</label><br>" +
                                             "<label> Price:</label>" +
