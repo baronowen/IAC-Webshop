@@ -8,20 +8,24 @@ function initPage() {
 }
 
 function loadProducts() {
-    // var i = 0;
+    var debug = false;
     $.ajax({
         url: "../restservices/category/1",
         method: "GET",
         success: [function(category) {
-            console.log("Category:");
-            console.log(category);
-            console.log("\n");
+            if(debug) {
+                console.log("Category:");
+                console.log(category);
+                console.log("\n");
+            }
 
             var products = category.products;
             $.each(products,function(i,product) {
-                console.log("Product:");
-                console.log(product)
-                console.log("\n");
+                if(debug) {
+                    console.log("Product:");
+                    console.log(product);
+                    console.log("\n");
+                }
 
                 var mainDiv = jQuery('<div/>', {
                     class: 'col-md-4',
@@ -54,6 +58,19 @@ function loadProducts() {
 }
 
 function addToCart(i) {
-    console.log('Add to cart');
-    console.log(i);
+    console.log('Add to cart, prodcut id: ' + i);
+    var cart = sessionStorage.getItem("cartProducts");
+
+    if(cart == null){
+        cart = [];
+    }
+
+    cart.forEach(function(item) {
+        // do something with `item`
+        console.log(item);
+    });
+
+    cart.push({id: 1, amount: 1 });
+    console.log(cart);
+    sessionStorage.setItem("cartProducts", cart);
 }
