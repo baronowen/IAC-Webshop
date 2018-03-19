@@ -3,3 +3,8 @@
     padding: 10px;
     margin: 10px;
 }
+
+.clickerDeClick {
+    text-decoration: underline;
+    color: blue;
+}

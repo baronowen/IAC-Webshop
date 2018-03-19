@@ -1,12 +1,10 @@
 function loadCategories() {
-    // console.log("../restservices/category");
     var i = 0;
     $.ajax({
         url: "../restservices/category",
         method: "GET",
         success: [function(data) {
             $.each(data,function(i,categories) {
-                // console.log(categories.name);
                 i++;
                 if(i>2) {
                     $(".dropdown-menu").append(
@@ -19,4 +17,4 @@ function loadCategories() {
             });
         }]
     });
-};
+}
