@@ -27,6 +27,7 @@ public class AuthenticationResource {
     public Response authenticateUser(	@FormParam("email") String email,
                                          @FormParam("password") String password) {
         System.out.println("Starting authentication...");
+
         try {
             String role = Resource.ACCOUNT_CONTROLLER.isLoginCorrect(email, Encryption.encrypt(password));
             if (role == null) { throw new IllegalArgumentException("No user found!"); }

@@ -32,6 +32,6 @@ function login() {
             console.log("Login Failed!");
             console.log(textStatus);
             console.log(errorThrown);
-    })
+    });
 
 }
