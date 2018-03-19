@@ -31,7 +31,8 @@ function loadSales() {
                                         "<div class=picture></div>" +
                                     "</div>" +
                                     "<div class=col-md-8>" +
-                                        "<div class=info>" +
+                                        "<div class=info> <a class=link href=Product.html>" +
+                                            "<label>" + sale.product.id + "</label><br>" +
                                             "<label> Name:</label>" +
                                             "<label>" + sale.product.name + "</label><br>" +
                                             "<label> Price:</label>" +
