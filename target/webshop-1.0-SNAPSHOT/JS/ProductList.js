@@ -1,4 +1,5 @@
 $(document).ready(initPage());
+var debug = true;
 
 function initPage() {
 
@@ -8,7 +9,9 @@ function initPage() {
 }
 
 function loadProducts() {
-    var debug = false;
+    if(debug) {
+        console.log("loadProducts()");
+    }
     $.ajax({
         url: "../restservices/category/1",
         method: "GET",
@@ -18,8 +21,8 @@ function loadProducts() {
                 console.log(category);
                 console.log("\n");
             }
-
             var products = category.products;
+
             $.each(products,function(i,product) {
                 if(debug) {
                     console.log("Product:");
@@ -30,7 +33,7 @@ function loadProducts() {
                 var mainDiv = jQuery('<div/>', {
                     class: 'col-md-4',
                     text: product.name
-                })
+                });
 
                 jQuery('<div/>', {
                     text: 'Naam: ' + product.name
@@ -47,7 +50,7 @@ function loadProducts() {
                 jQuery('<div/>', {
                     onclick: 'addToCart(' + i + ')',
                     class: 'clickerDeClick',
-                    text: 'VOEG TE AAN WINKELWAGEN:'
+                    text: 'VOEG TE AAN WINKELWAGEN'
                 }).appendTo(mainDiv);
 
 
@@ -57,20 +60,35 @@ function loadProducts() {
     });
 }
 
-function addToCart(i) {
-    console.log('Add to cart, prodcut id: ' + i);
-    var cart = sessionStorage.getItem("cartProducts");
+function addToCart(productId) {
+    if(debug) {
+        console.log("addToCart(" + productId + ")");
+    }
+    var cartStr = localStorage.getItem("cartProducts");
+    var cart = JSON.parse(cartStr);
+    var pushRequired = true;
 
     if(cart == null){
         cart = [];
     }
 
-    cart.forEach(function(item) {
-        // do something with `item`
-        console.log(item);
-    });
+    if(debug) {
+        console.log("cart: ");
+        console.log(cart);
+        console.log("\n");
+    }
 
-    cart.push({id: 1, amount: 1 });
-    console.log(cart);
-    sessionStorage.setItem("cartProducts", cart);
+    for(var i=0; i < cart.length; i++) {
+        if(cart[i].id === productId){
+            cart[i].amount += 1;
+            pushRequired = false;
+        }
+    }
+
+    if(pushRequired){
+        cart.push({id: productId, amount: 1 });
+    }
+
+    var cartStrReturn = JSON.stringify(cart);
+    localStorage.setItem("cartProducts", cartStrReturn);
 }

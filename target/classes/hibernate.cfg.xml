@@ -18,7 +18,7 @@
     <!-- Echo all executed SQL to stdout -->
     <property name='show_sql'>true</property>
     <property name="hibernate.show_sql">true</property>
-    <!--<property name="hibernate.format_sql">true</property>-->
+    <property name="hibernate.format_sql">true</property>
     <!--<property name="hibernate.hbm2ddl.auto">create</property>-->
 
     <!-- Mapping files -->
