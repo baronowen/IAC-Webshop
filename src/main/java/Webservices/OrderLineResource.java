@@ -21,7 +21,7 @@ public class OrderLineResource {
 
 
     @GET
-//    @RolesAllowed({"customer"})
+//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAllOrderLines() {
         try {
@@ -39,7 +39,7 @@ public class OrderLineResource {
 
     @GET
     @Path("{id}")
-//    @RolesAllowed({"customer"})
+//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getOrderLineById(@PathParam("id") int id) {
         try {
