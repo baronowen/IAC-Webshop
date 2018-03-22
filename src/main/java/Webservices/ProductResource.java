@@ -1,5 +1,6 @@
 package Webservices;
 
+import Model.Category;
 import Model.Product;
 
 import javax.json.JsonArray;
@@ -7,6 +8,7 @@ import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by nickw on 7-3-2018.
@@ -68,7 +70,14 @@ public class ProductResource {
                     .price(price)
                     .build();
 
+            Category cat = Resource.CATEGORY_CONTROLLER.findById(2);
             Resource.PRODUCT_CONTROLLER.insert(product);
+
+            Set<Product> products = cat.getProducts();
+            products.add(product);
+            cat.setProducts(products);
+
+            Resource.CATEGORY_CONTROLLER.update(cat);
 
             return Response.accepted().build();
         } catch (IllegalArgumentException e) {
