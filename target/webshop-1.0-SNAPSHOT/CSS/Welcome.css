@@ -2,7 +2,7 @@ h1 {
     text-align:center;
 }
 
-.test, .picture, .product, .info, .list {
+.product, .info {
     outline: 2px solid #000000;
     padding: 10px;
     margin: 15px;

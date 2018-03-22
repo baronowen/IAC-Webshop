@@ -30,7 +30,7 @@ function login() {
             sessionStorage.setItem("email", storage.emailAdr);
             console.log(storage.emailAdr);
             console.log(storage);
-            // location.replace("../HTML/Welcome.html");
+            location.href=("../HTML/Welcome.html");
 
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log("Login Failed!");
