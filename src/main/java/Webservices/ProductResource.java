@@ -57,9 +57,9 @@ public class ProductResource {
     // @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response createProduct(
-            @PathParam("name")  String name,
-            @PathParam("price") double price,
-            @PathParam("description") String description)
+            @QueryParam("name")  String name,
+            @QueryParam("price") double price,
+            @QueryParam("description") String description)
     {
         try{
             Product product = new Product.ProductBuilder()
@@ -80,10 +80,10 @@ public class ProductResource {
     // @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response createProduct(
-            @PathParam("id")          int id,
-            @PathParam("name")        String name,
-            @PathParam("price")       double price,
-            @PathParam("description") String description)
+            @QueryParam("id")          int id,
+            @QueryParam("name")        String name,
+            @QueryParam("price")       double price,
+            @QueryParam("description") String description)
     {
         try{
             Product product = Resource.PRODUCT_CONTROLLER.findById(id);
