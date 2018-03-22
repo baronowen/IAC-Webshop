@@ -46,4 +46,9 @@ public class AccountController implements GenericController<Account> {
     public String isLoginCorrect(String username, String password){
         return accountDao.isLoginCorrect(username,password);
     }
+
+    public Account getAccountByEmail(String email) {
+        return accountDao.getAccountByEmail(email);
+    }
+
 }

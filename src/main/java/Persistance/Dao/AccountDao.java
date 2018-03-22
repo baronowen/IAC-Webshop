@@ -41,8 +41,28 @@ public class AccountDao extends GenericDao<Account> {
     }
 
 
-    //TODO Add functionality
-    public String getAccountByEmail(String email) {
+//    //TODO Add functionality old
+//    public String getAccountByEmail(String email) {
+//
+//        Account account;
+//        try (Session session = super.getSession()) {
+//            Query query = session.createQuery("from " + Account.class.getName() + " where email = :email");
+//            query.setParameter("email", email);
+//
+//            // if there is no account, it throws an error
+//            account = (Account) query.getResultList().get(0);
+//        } catch (Exception e) {
+//            //e.printStackTrace();
+//            System.out.println("Couldn't find account");
+//            return null;
+//        }
+//
+//        // if an account was found, return true
+//        return account.getRole().toString();
+//    }
+
+    //TODO Add functionality new
+    public Account getAccountByEmail(String email) {
 
         Account account;
         try (Session session = super.getSession()) {
@@ -58,7 +78,7 @@ public class AccountDao extends GenericDao<Account> {
         }
 
         // if an account was found, return true
-        return account.getRole().toString();
+        return account;
     }
 
 }
