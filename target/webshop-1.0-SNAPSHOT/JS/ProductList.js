@@ -104,11 +104,35 @@ $(document).ready(function() {
             return;
         }
 
-        cart = localStorage.getItem("cart");
+        cart = localStorage.getItem("cartProducts");
 
         if(cart == null) {
             alert('Je moet wel wat in je winkelwagen hebben.');
             return;
+        } else {
+            var JSONdata = localStorage.getItem("cartProducts");
+            console.log('gets here');
+            $.ajax({
+                url: "../restservices/order",
+                method: "POST",
+                beforeSend: function(xhr) {
+                    window.sessionStorage.getItem("sessionToken");
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                },
+                data: JSONdata,
+                success: function (response) {
+                    console.log('Succes');
+                },
+                complete: function(response) {
+                    if (response.status === 200) {
+                        console.log("succes");
+                    } else {
+                        console.log("failure");
+                    }
+                }
+            });
+            localStorage.clear();
+            console.log("until next time");
         }
 
         formData = new FormData();
