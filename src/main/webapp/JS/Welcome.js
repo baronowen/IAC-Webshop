@@ -59,6 +59,5 @@ function loadSales() {
 function divClick(id) {
     console.log(id);
     sessionStorage.setItem('id', id);
-    // console.log(sessionStorage.getItem('id'));
     location.href='../HTML/Product.html';
 };

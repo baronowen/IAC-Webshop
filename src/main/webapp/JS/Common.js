@@ -10,7 +10,6 @@ function loadCategories() {
                     $(".dropdown-menu").append(
                         "<li><a href='productList.html'>" + categories.name + "</a></li>"
                     )
-                    //TODO XSS afdekken in bovenstaande link als we XSS gaan afdekken.
                 }
                 $("#c"+i+"").text(categories.name);
 

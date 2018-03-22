@@ -9,26 +9,15 @@ function initPage() {
 }
 
 function loadProducts() {
-    if(debug) {
-        console.log("loadProducts()");
-    }
+
     $.ajax({
         url: "../restservices/category/1",
         method: "GET",
         success: [function(category) {
-            if(debug) {
-                console.log("Category:");
-                console.log(category);
-                console.log("\n");
-            }
+
             var products = category.products;
 
             $.each(products,function(i,product) {
-                if(debug) {
-                    console.log("Product:");
-                    console.log(product);
-                    console.log("\n");
-                }
 
                 var mainDiv = jQuery('<div/>', {
                     class: 'col-md-4',
@@ -53,7 +42,6 @@ function loadProducts() {
                     text: 'VOEG TE AAN WINKELWAGEN'
                 }).appendTo(mainDiv);
 
-
                 mainDiv.appendTo('.pList');
             });
         }]
@@ -61,21 +49,12 @@ function loadProducts() {
 }
 
 function addToCart(productId) {
-    if(debug) {
-        console.log("addToCart(" + productId + ")");
-    }
     var pushRequired = true;
 
     var cart = loadCart();
 
     if(cart == null){
         cart = [];
-    }
-
-    if(debug) {
-        console.log("cart: ");
-        console.log(cart);
-        console.log("\n");
     }
 
     for(var i=0; i < cart.length; i++) {
@@ -105,17 +84,15 @@ $(document).ready(function() {
         }
 
         cart = localStorage.getItem("cartProducts");
-
         if(cart == null) {
             alert('Je moet wel wat in je winkelwagen hebben.');
-            return;
+
         } else {
+
             var JSONdata =  JSON.parse(localStorage.getItem("cartProducts"));
 
+            JSONdata = JSON.stringify({"orderLines": JSONdata})
 
-
-            JSONdata = JSON.stringify({"orderLines": JSONdata});
-            console.log('gets here');
             $.ajax({
                 url: "../restservices/order",
                 method: "POST",
@@ -125,25 +102,10 @@ $(document).ready(function() {
                 },
                 data: JSONdata,
                 success: function (response) {
-                    console.log('Succes');
                     alert('Thanks for ordering at Webshop18');
                 }
             });
             localStorage.clear();
-            console.log("until next time");
         }
-
-        // formData = new FormData();
-        // formData.append('email', email);
-        // formData.append('products', cart);
-        //
-        // $.ajax({
-        //     url     : "../restservices/order",
-        //     method  : "POST",
-        //     data    : formData,
-        //     success : function(data) {
-        //         alert(data);
-        //     }
-        // });
     });
 });

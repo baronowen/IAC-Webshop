@@ -9,7 +9,6 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
@@ -22,7 +21,6 @@ import java.util.Set;
 public class OrderResource {
 
     @GET
-//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAllOrders() {
         try {
@@ -34,13 +32,10 @@ public class OrderResource {
         } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
-
     }
 
     @GET
     @Path("{id}")
-//     @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getOrderById(@PathParam("id") int id) {
         try {
@@ -52,8 +47,6 @@ public class OrderResource {
         } catch (IllegalArgumentException e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
-
     }
 
     @POST
@@ -61,24 +54,16 @@ public class OrderResource {
     @Produces("application/json")
     public Response addOrder(@Context HttpServletRequest req, InputStream is) throws IOException {
         try {
-            System.out.println("Wtf helemaal geen accoun2t");
-
             JsonObject jsonObject = Json.createReader(is).readObject();
             Set<OrderLine> orderLines = new HashSet<>();
             // orderLines: { product_ID, amount }
 
             Account account = AuthenticationFilter.getAccountFromHttpServletRequest(req);
             if (account == null) {
-                System.out.println("Wtf helemaal geen account");
                 throw new Exception();
             }
 
-
-            System.out.println("User: " + account.getEmail());
-
             JsonArray jsonArray = jsonObject.getJsonArray("orderLines");
-
-
 
             for (int i = 0; i < jsonArray.size(); i++) {
 
@@ -89,7 +74,6 @@ public class OrderResource {
 
                 OrderLine orderLine = new OrderLine(jsonObject1.getInt("amount"), product);
                 orderLines.add(orderLine);
-
             }
 
             Order order = new Order(account,orderLines);
@@ -100,12 +84,5 @@ public class OrderResource {
         } catch (Exception e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-
-
-
-
     }
-
-
-
 }
