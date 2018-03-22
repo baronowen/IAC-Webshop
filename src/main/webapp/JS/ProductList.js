@@ -97,13 +97,12 @@ function addToCart(productId) {
 
 $(document).ready(function() {
     $("#orderButton").click(function () {
-        email = sessionStorage.getItem("sessionToken");
+        email = sessionStorage.getItem("email");
 
-        //TODO Uncomment this after JSONdata format is fixed
-        // if(email == null) {
-        //     alert('je moet inloggen om te kunnen bestellen');
-        //     return;
-        // }
+        if(email == null) {
+            alert('je moet inloggen om te kunnen bestellen');
+            return;
+        }
 
         cart = localStorage.getItem("cartProducts");
 
@@ -111,22 +110,16 @@ $(document).ready(function() {
             alert('Je moet wel wat in je winkelwagen hebben.');
             return;
         } else {
+            var JSONdata =  JSON.parse(localStorage.getItem("cartProducts"));
 
-            //TODO JSONdata needs to have correct format
-
-            var JSONdata = localStorage.getItem("cartProducts");
-            var obj = new Object();
-            obj.orderLines = localStorage.getItem("cartProducts");
-            console.log(obj);
-
-            console.log(JSON.stringify(obj));
-
+            console.log({"orderLines": JSONdata});
             console.log('gets here');
             $.ajax({
                 url: "../restservices/order",
                 method: "POST",
                 beforeSend: function(xhr) {
-                    var token = window.sessionStorage.getItem("sessionToken");
+                    token = window.sessionStorage.getItem("sessionToken");
+                    console.log(token);
                     xhr.setRequestHeader('Authorization', 'Bearer ' + token);
                 },
                 data: JSONdata,

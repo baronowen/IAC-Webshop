@@ -61,13 +61,17 @@ public class OrderResource {
     @Produces("application/json")
     public Response addOrder(@Context HttpServletRequest req, InputStream is) throws IOException {
         try {
+            System.out.println("Wtf helemaal geen accoun2t");
 
             JsonObject jsonObject = Json.createReader(is).readObject();
             Set<OrderLine> orderLines = new HashSet<>();
             // orderLines: { product_ID, amount }
 
             Account account = AuthenticationFilter.getAccountFromHttpServletRequest(req);
-            if (account == null) {throw new Exception();}
+            if (account == null) {
+                System.out.println("Wtf helemaal geen account");
+                throw new Exception();
+            }
 
 
             System.out.println("User: " + account.getEmail());

@@ -70,6 +70,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 String user = claims.getSubject();
                 account = Webservices.Resource.ACCOUNT_CONTROLLER.getAccountByEmail(user);
             } catch (JwtException | IllegalArgumentException e) {
+                e.printStackTrace();
                 System.out.println("Invalid JWT, processing as guest!");
             }
         }

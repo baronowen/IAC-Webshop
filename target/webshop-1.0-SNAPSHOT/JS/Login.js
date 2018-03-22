@@ -28,8 +28,6 @@ function login() {
             sessionStorage.setItem("sessionToken",storage.token);
             sessionStorage.setItem("role", storage.role);
             sessionStorage.setItem("email", storage.emailAdr);
-            console.log(storage.emailAdr);
-            console.log(storage);
             location.href=("../HTML/Welcome.html");
 
         }).fail(function(jqXHR, textStatus, errorThrown) {
