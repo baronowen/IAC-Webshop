@@ -27,7 +27,7 @@ public class Account {
     @Column
     private boolean isActive;
 
-    @Column
+    @Column(unique = true)
     private String email;
 
     @Column

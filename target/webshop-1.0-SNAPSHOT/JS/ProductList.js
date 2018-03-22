@@ -64,9 +64,9 @@ function addToCart(productId) {
     if(debug) {
         console.log("addToCart(" + productId + ")");
     }
-    var cartStr = localStorage.getItem("cartProducts");
-    var cart = JSON.parse(cartStr);
     var pushRequired = true;
+
+    var cart = loadCart();
 
     if(cart == null){
         cart = [];
@@ -91,4 +91,37 @@ function addToCart(productId) {
 
     var cartStrReturn = JSON.stringify(cart);
     localStorage.setItem("cartProducts", cartStrReturn);
+
+    $("#orderButton").html("Shopping cart: " + cart.length)
 }
+
+$(document).ready(function() {
+    $("#orderButton").click(function () {
+        email = sessionStorage.getItem("email");
+
+        if(email == null) {
+            alert('je moet inloggen om te kunnen bestellen');
+            return;
+        }
+
+        cart = localStorage.getItem("cart");
+
+        if(cart == null) {
+            alert('Je moet wel wat in je winkelwagen hebben.');
+            return;
+        }
+
+        formData = new FormData();
+        formData.append('email', email);
+        formData.append('products', cart);
+
+        $.ajax({
+            url     : "../restservices/order",
+            method  : "POST",
+            data    : formData,
+            success : function(data) {
+                alert(data);
+            }
+        });
+    });
+});

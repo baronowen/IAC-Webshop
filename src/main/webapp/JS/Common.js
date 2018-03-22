@@ -18,3 +18,10 @@ function loadCategories() {
         }]
     });
 }
+
+function loadCart() {
+
+    var cartStr = localStorage.getItem("cartProducts");
+    return JSON.parse(cartStr);
+
+}

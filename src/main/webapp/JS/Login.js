@@ -25,9 +25,12 @@ function login() {
         function(response) {
 
             var storage = JSON.parse(response);
-            window.sessionStorage.setItem("sessionToken",storage.token);
-            window.sessionStorage.setItem("role", storage.role);
-            location.replace("../HTML/Welcome.html");
+            sessionStorage.setItem("sessionToken",storage.token);
+            sessionStorage.setItem("role", storage.role);
+            sessionStorage.setItem("email", storage.emailAdr);
+            console.log(storage.emailAdr);
+            console.log(storage);
+            // location.replace("../HTML/Welcome.html");
 
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log("Login Failed!");
