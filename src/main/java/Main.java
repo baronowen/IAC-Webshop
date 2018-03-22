@@ -69,12 +69,12 @@ public class Main {
 //        saleController.insert(sale);
 //
         //User
-        Address address2 = new Address("Daltonlaan", 200, "Utrecht", "3577DC");
-        Customer customer = new Customer("Nick", "Windt", 643206739, "25-05-1998", address2);
-        Account account = new Account(new Date(20), address2, customer, true, "nickwindt@hotmail.nl", Encryption.encrypt("wachtwoord"), AccountRole.customer);
+//        Address address2 = new Address("Daltonlaan", 200, "Utrecht", "3577DC");
+//        Customer customer = new Customer("Nick", "Windt", 643206739, "25-05-1998", address2);
+//        Account account = new Account(new Date(20), address2, customer, true, "nickwindt@hotmail.nl", Encryption.encrypt("wachtwoord"), AccountRole.customer);
 
-        cc.insert(customer);
-        ac.insert(account);
+//        cc.insert(customer);
+//        ac.insert(account);
 
 //        AuthenticationResource ar = new AuthenticationResource();
 //        ar.authenticateUser("nickwindt@hotmail.nl", "wachtwoord");
