@@ -21,7 +21,7 @@ public class CustomerResource {
 
 
     @GET
-//    @RolesAllowed({"customer"})
+//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAllCustomers() {
         try {
@@ -39,7 +39,7 @@ public class CustomerResource {
 
     @GET
     @Path("{id}")
-//    @RolesAllowed({"user"})
+//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getCustomerById(@PathParam("id") int id) {
         try {

@@ -21,7 +21,7 @@ public class AccountResource {
 
 
     @GET
-//    @RolesAllowed({"customer", "admin"})
+//    @RolesAllowed({"admin"})
     @Produces("application/json")
     public Response getAllAccounts() {
         try {
@@ -39,7 +39,7 @@ public class AccountResource {
 
     @GET
     @Path("{id}")
-//    @RolesAllowed({"customer", "admin"})
+//    @RolesAllowed({"admin"})
     @Produces("application/json")
     public Response getAccountById(@PathParam("id") int id) {
         try {
