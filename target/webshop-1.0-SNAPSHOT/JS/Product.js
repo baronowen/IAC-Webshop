@@ -6,9 +6,10 @@ function initPage() {
 }
 
 function loadProduct() {
-
+    var id = sessionStorage.getItem('id');
+    console.log(id);
     $.ajax({
-        url: "../restservices/product/4",
+        url: "../restservices/product/" + id,
         method: "GET",
         success: [function(data) {
             $("#name").html(data.name);

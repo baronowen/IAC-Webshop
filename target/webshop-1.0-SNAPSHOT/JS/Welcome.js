@@ -5,12 +5,15 @@ function initPage() {
     loadSales();
 }
 
+
 function loadSales() {
+    var i = 0;
     $.ajax({
         url: "../restservices/sale",
         method: "GET",
         success: [function(data) {
             $.each(data, function(i,sale) {
+                i++;
                 $(".sales").append(
                     "<div class=container-fluid>" +
                         "<div class=row>" +
@@ -23,8 +26,8 @@ function loadSales() {
                                         "<div class=picture></div>" +
                                     "</div>" +
                                     "<div class=col-md-8>" +
-                                        "<div class=info> <a class=link href=Product.html>" +
-                                            "<label>" + sale.product.id + "</label><br>" +
+                                        "<div class=info onclick=divClick("+ sale.product.id +")>" +
+                                            "<label href=\"..\\HTML\\Product.html\">" + sale.product.id + "</label><br>" +
                                             "<label> Name:</label>" +
                                             "<label>" + sale.product.name + "</label><br>" +
                                             "<label> Price:</label>" +
@@ -37,6 +40,7 @@ function loadSales() {
                                             "<label>" + sale.toDate + "</label><br>" +
                                             "<label> Description: </label>" +
                                             "<label>" + sale.product.description + "</label>" +
+
                                         "</div>" +
                                     "</div>" +
                                 "</div>" +
@@ -50,4 +54,11 @@ function loadSales() {
             });
         }]
     });
+};
+
+function divClick(id) {
+    console.log(id);
+    sessionStorage.setItem('id', id);
+    // console.log(sessionStorage.getItem('id'));
+    location.href='../HTML/Product.html';
 };
