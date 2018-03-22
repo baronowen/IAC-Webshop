@@ -21,7 +21,7 @@ public class SaleResource {
 
 
     @GET
-//    @RolesAllowed({"user"})
+//     @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAllSales() {
         try {
@@ -39,7 +39,7 @@ public class SaleResource {
 
     @GET
     @Path("{id}")
-//    @RolesAllowed({"user"})
+//     @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getSaleById(@PathParam("id") int id) {
         try {
@@ -55,10 +55,9 @@ public class SaleResource {
 
     }
 
-    //TODO test when data is in databases
     @GET
     @Path("/week")
-    //    @RolesAllowed({"user"})
+    //     @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getSaleByWeek() {
 

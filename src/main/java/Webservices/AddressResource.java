@@ -24,7 +24,7 @@ public class AddressResource {
 
 
     @GET
-//    @RolesAllowed({"user"})
+//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAllAddresses() {
         try {
@@ -42,7 +42,7 @@ public class AddressResource {
 
     @GET
     @Path("{id}")
-//    @RolesAllowed({"user"})
+//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAddressById(@PathParam("id") int id) {
         try {

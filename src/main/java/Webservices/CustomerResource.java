@@ -21,7 +21,7 @@ public class CustomerResource {
 
 
     @GET
-//    @RolesAllowed({"user"})
+//    @RolesAllowed({"customer"})
     @Produces("application/json")
     public Response getAllCustomers() {
         try {

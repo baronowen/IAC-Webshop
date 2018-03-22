@@ -21,7 +21,7 @@ public class CategoryResource {
 
 
     @GET
-//    @RolesAllowed({"user"})
+//   @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAllCategories() {
         try {
@@ -39,7 +39,7 @@ public class CategoryResource {
 
     @GET
     @Path("{id}")
-//    @RolesAllowed({"user"})
+//    @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getCategoryById(@PathParam("id") int id) {
         try {

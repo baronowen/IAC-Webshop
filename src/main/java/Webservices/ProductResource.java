@@ -19,7 +19,7 @@ public class ProductResource {
 
 
     @GET
-//    @RolesAllowed({"user"})
+//     @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getAllProducts() {
         try {
@@ -37,7 +37,7 @@ public class ProductResource {
 
     @GET
     @Path("{id}")
-//    @RolesAllowed({"user"})
+//     @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response getProductById(@PathParam("id") int id) {
         try {
@@ -54,6 +54,7 @@ public class ProductResource {
     }
 
     @POST
+    // @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response createProduct(
             @PathParam("name")  String name,
@@ -76,6 +77,7 @@ public class ProductResource {
     }
 
     @PUT
+    // @RolesAllowed({"customer", "admin"})
     @Produces("application/json")
     public Response createProduct(
             @PathParam("id")          int id,

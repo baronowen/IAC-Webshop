@@ -15,15 +15,15 @@ public class Order {
 
     @JoinColumn(nullable = false)
     @OneToOne(cascade = CascadeType.ALL)
-    private Address deliveryAddress;
+    private Account account;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<OrderLine> lines;
 
     private Order(){}
 
-    public Order(Address deliveryAddress, Set<OrderLine> lines) {
-        this.deliveryAddress = deliveryAddress;
+    public Order(Account acoount, Set<OrderLine> lines) {
+        this.account = acoount;
         this.lines = lines;
     }
 
@@ -33,12 +33,12 @@ public class Order {
         return id;
     }
 
-    public Address getDeliveryAddress() {
-        return deliveryAddress;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setDeliveryAddress(Address deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Set<OrderLine> getLines() {
@@ -55,7 +55,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", deliveryAddress=" + deliveryAddress +
+                ", account=" + account +
                 ", lines=" + lines +
                 '}';
     }
