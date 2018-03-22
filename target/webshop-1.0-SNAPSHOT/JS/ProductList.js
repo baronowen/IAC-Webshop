@@ -97,7 +97,7 @@ function addToCart(productId) {
 
 $(document).ready(function() {
     $("#orderButton").click(function () {
-        email = sessionStorage.getItem("email");
+        email = sessionStorage.getItem("sessionToken");
 
         if(email == null) {
             alert('je moet inloggen om te kunnen bestellen');
@@ -112,26 +112,21 @@ $(document).ready(function() {
         } else {
             var JSONdata =  JSON.parse(localStorage.getItem("cartProducts"));
 
-            console.log({"orderLines": JSONdata});
+
+
+            JSONdata = JSON.stringify({"orderLines": JSONdata});
             console.log('gets here');
             $.ajax({
                 url: "../restservices/order",
                 method: "POST",
                 beforeSend: function(xhr) {
-                    token = window.sessionStorage.getItem("sessionToken");
-                    console.log(token);
+                    var token = window.sessionStorage.getItem("sessionToken");
                     xhr.setRequestHeader('Authorization', 'Bearer ' + token);
                 },
                 data: JSONdata,
                 success: function (response) {
                     console.log('Succes');
-                },
-                complete: function(response) {
-                    if (response.status === 200) {
-                        console.log("succes");
-                    } else {
-                        console.log("failure");
-                    }
+                    alert('Thanks for ordering at Webshop18');
                 }
             });
             localStorage.clear();
