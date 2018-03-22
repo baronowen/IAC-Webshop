@@ -28,37 +28,12 @@ function login() {
             sessionStorage.setItem("sessionToken",storage.token);
             sessionStorage.setItem("role", storage.role);
             sessionStorage.setItem("email", storage.emailAdr);
-            console.log(storage.emailAdr);
-            console.log(storage);
             location.href=("../HTML/Welcome.html");
 
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.log("Login Failed!");
             console.log(textStatus);
             console.log(errorThrown);
-    });
-
-}
-
-function posttest() {
-
-    $.ajax({
-        url: "../restservices/order",
-        method: "POST",
-        beforeSend: function (xhr) {
-            var token = window.sessionStorage.getItem("sessionToken");
-            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-        },
-        succes: function (response) {
-            console.log("SUCCES!");
-        },
-        complete: function (response) {
-            if (response.status === 200) {
-                console.log("SUCCES");
-            } else {
-                console.log("Error");
-            }
-        }
     });
 
 }
