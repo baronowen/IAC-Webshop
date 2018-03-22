@@ -27,4 +27,9 @@ class ProductResourceTest {
         Assert.notNull(pTest.getProductById(products.get(0).getId()));
     }
 
+    @org.junit.jupiter.api.Test
+    void createProduct() {
+        ProductResource pTest = new ProductResource();
+        Assert.notNull(pTest.createProduct("UnitTest",10, "Een product gemaakt door de test"));
+    }
 }
