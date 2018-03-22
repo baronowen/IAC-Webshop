@@ -97,12 +97,13 @@ function addToCart(productId) {
 
 $(document).ready(function() {
     $("#orderButton").click(function () {
-        email = sessionStorage.getItem("email");
+        email = sessionStorage.getItem("sessionToken");
 
-        if(email == null) {
-            alert('je moet inloggen om te kunnen bestellen');
-            return;
-        }
+        //TODO Uncomment this after JSONdata format is fixed
+        // if(email == null) {
+        //     alert('je moet inloggen om te kunnen bestellen');
+        //     return;
+        // }
 
         cart = localStorage.getItem("cartProducts");
 
@@ -110,13 +111,22 @@ $(document).ready(function() {
             alert('Je moet wel wat in je winkelwagen hebben.');
             return;
         } else {
+
+            //TODO JSONdata needs to have correct format
+
             var JSONdata = localStorage.getItem("cartProducts");
+            var obj = new Object();
+            obj.orderLines = localStorage.getItem("cartProducts");
+            console.log(obj);
+
+            console.log(JSON.stringify(obj));
+
             console.log('gets here');
             $.ajax({
                 url: "../restservices/order",
                 method: "POST",
                 beforeSend: function(xhr) {
-                    window.sessionStorage.getItem("sessionToken");
+                    var token = window.sessionStorage.getItem("sessionToken");
                     xhr.setRequestHeader('Authorization', 'Bearer ' + token);
                 },
                 data: JSONdata,
@@ -135,17 +145,17 @@ $(document).ready(function() {
             console.log("until next time");
         }
 
-        formData = new FormData();
-        formData.append('email', email);
-        formData.append('products', cart);
-
-        $.ajax({
-            url     : "../restservices/order",
-            method  : "POST",
-            data    : formData,
-            success : function(data) {
-                alert(data);
-            }
-        });
+        // formData = new FormData();
+        // formData.append('email', email);
+        // formData.append('products', cart);
+        //
+        // $.ajax({
+        //     url     : "../restservices/order",
+        //     method  : "POST",
+        //     data    : formData,
+        //     success : function(data) {
+        //         alert(data);
+        //     }
+        // });
     });
 });

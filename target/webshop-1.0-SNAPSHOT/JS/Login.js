@@ -39,26 +39,3 @@ function login() {
     });
 
 }
-
-function posttest() {
-
-    $.ajax({
-        url: "../restservices/order",
-        method: "POST",
-        beforeSend: function (xhr) {
-            var token = window.sessionStorage.getItem("sessionToken");
-            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-        },
-        succes: function (response) {
-            console.log("SUCCES!");
-        },
-        complete: function (response) {
-            if (response.status === 200) {
-                console.log("SUCCES");
-            } else {
-                console.log("Error");
-            }
-        }
-    });
-
-}

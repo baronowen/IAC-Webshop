@@ -79,7 +79,7 @@ public class OrderResource {
             for (int i = 0; i < jsonArray.size(); i++) {
 
                 JsonObject jsonObject1 = jsonArray.getJsonObject(i);
-                Product product = Resource.PRODUCT_CONTROLLER.findById(jsonObject1.getInt("product_ID"));
+                Product product = Resource.PRODUCT_CONTROLLER.findById(jsonObject1.getInt("id"));
 
                 if (product == null) { continue; }
 
