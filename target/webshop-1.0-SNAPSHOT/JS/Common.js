@@ -8,9 +8,9 @@ function loadCategories() {
                 i++;
                 if(i>2) {
                     $(".dropdown-menu").append(
-                        "<li><a href='productList.html'>" + categories.name + "</a></li>"
+                        "<li><a href='../HTML/ProductList.html'>" + categories.name + "</a></li>"
                     )
-                    //TODO XSS afdekken in bovenstaande link als we XSS gaan afdekken.
+                    // window.sessionStorage.setItem('catId', categories.id);
                 }
                 $("#c"+i+"").text(categories.name);
 

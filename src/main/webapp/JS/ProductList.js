@@ -9,7 +9,7 @@ function initPage() {
 }
 
 function loadProducts() {
-
+    // var catId = window.sessionStorage.getItem('catId');
     $.ajax({
         url: "../restservices/category/1",
         method: "GET",
